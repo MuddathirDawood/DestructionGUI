@@ -1,8 +1,8 @@
 <template>
   <nav>
     <ul id="main">
-      <li>Home</li>
-      <li>About</li>
+      <li><router-link to="/">Home</router-link></li>
+      <li><router-link to="/about">About</router-link></li>
       <li>Weapons +
         <ul class="drop">
           <div>
@@ -17,16 +17,16 @@
       <li>Eras +
           <ul class="drop">
             <div>
-                <li>Prehistory and the Ancient World</li>
-                <li>Early Middle Ages</li>
-                <li>Late Middle Ages</li>
-                <li>Early Modern Period</li>
-                <li>Modern Period</li>
+                <li><router-link :to="{name:'Eras', params: {id: 1}}">Prehistory and the Ancient World</router-link></li>
+                <li><router-link :to="{name:'Eras', params: {id: 2}}">Early Middle Ages</router-link></li>
+                <li><router-link :to="{name:'Eras', params: {id: 3}}">Late Middle Ages</router-link></li>
+                <li><router-link :to="{name:'Eras', params: {id: 4}}">Early Modern Period</router-link></li>
+                <li><router-link :to="{name:'Eras', params: {id: 5}}">Modern Period</router-link></li>
             </div>
           </ul>
       </li>
-      <li>Log In</li>
-      <li>Register</li>
+      <li><router-link to="/login">Log In</router-link></li>
+      <li><router-link to="/register">Register</router-link></li>
     </ul>
   </nav>
 </template>
@@ -72,7 +72,12 @@ nav{
   min-width: 120px;
 }
 
-li {
+li>a{
+  text-decoration: none;
+  margin: 0;
+  color: #FFD700;
+}
+li{
   margin: 0;
   color: #FFD700;
 }

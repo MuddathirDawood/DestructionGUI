@@ -26,7 +26,7 @@ export default {
 }
 
 header{
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.56);
   display: flex;
   justify-content: space-between;
   height: 75px;
@@ -34,7 +34,7 @@ header{
 }
 
 main{
-  min-height: 85vh;
+  min-height: 100vh;
   min-width: 100vw;
   background: url('https://i.postimg.cc/nhjnxNcF/10730876.jpg')no-repeat center center/cover;
 }
@@ -46,5 +46,17 @@ footer{
 
 body{
   overflow-x: hidden;
+}
+
+/*\\\\ SCROLLBARR ////*/
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #E5E4E2;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFD700;
 }
 </style>

@@ -117,6 +117,10 @@ li{
   transition: all 1.2s;
 }
 
+.drop li>a{
+  color: black;
+}
+
 .drop li:hover{
   background: linear-gradient(to left,#FFD700 0%,#E5E4E2 15%) !important;
 }

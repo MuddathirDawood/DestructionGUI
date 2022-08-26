@@ -33,7 +33,7 @@
             </div>
         </div>
        <div id="img">
-
+            <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
        </div>
     </div>
     </div>
@@ -79,9 +79,13 @@ font-size: 15px;
 }
 
 #img{
-  width: 200px;
-  height: 200px;
-  background-color: white;
+  width: 300px;
+  height: 65px;
+}
+
+img{
+    width: 100%;
+    height: 100%;
 }
 
 .container{

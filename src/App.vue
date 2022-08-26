@@ -6,15 +6,15 @@
     <router-view/>
   </main>
   <footer>
-    <footer/>
+    <FooterCom/>
   </footer>
 </template>
 
 <script>
-import Footer from './components/Footer.vue'
+import FooterCom from './components/Footer.vue'
 import Navbar from './components/Navbar.vue'
 export default {
-  components: { Navbar, Footer },
+  components: { Navbar, FooterCom },
   
 }
 </script>
@@ -27,9 +27,9 @@ export default {
 
 header{
   background-color: rgba(0, 0, 0, 0.56);
-  display: flex;
-  justify-content: space-between;
-  height: 75px;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  height: 65px;
   min-width: 100vw;
 }
 

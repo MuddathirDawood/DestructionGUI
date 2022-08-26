@@ -1,5 +1,6 @@
 <template>
   <nav>
+    <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
     <ul id="main">
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/about">About</router-link></li>
@@ -17,11 +18,9 @@
       <li>Eras +
           <ul class="drop">
             <div>
-                <li><router-link :to="{name:'Eras', params: {id: 1}}">Prehistory and the Ancient World</router-link></li>
-                <li><router-link :to="{name:'Eras', params: {id: 2}}">Early Middle Ages</router-link></li>
-                <li><router-link :to="{name:'Eras', params: {id: 3}}">Late Middle Ages</router-link></li>
-                <li><router-link :to="{name:'Eras', params: {id: 4}}">Early Modern Period</router-link></li>
-                <li><router-link :to="{name:'Eras', params: {id: 5}}">Modern Period</router-link></li>
+                <li v-for="era in eras" :key="era">
+                  <router-link @click="get(era.era_id)" :to="{name: 'Eras', params: {id: era.era_id}}">{{era.era_name}}</router-link>
+                </li>
             </div>
           </ul>
       </li>
@@ -33,7 +32,20 @@
 
 <script>
 export default {
-
+    mounted(){
+      this.$store.dispatch('getEras')
+    },
+    computed:{
+      eras(){
+        return this.$store.state.eras
+      }
+    },
+    methods:{
+      get(id){
+        this.$store.dispatch('getEra', id)
+        this.$store.dispatch('getEraWeapons', id)
+      }
+    },
 }
 </script>
 
@@ -44,13 +56,14 @@ export default {
 }
 
 img{
-    height: 75px;
-    width: 200px;
+    height: 65px;
+    width: 300px;
 }
 nav{
     display: flex;
-    justify-content: end;
-    align-items: flex-end;
+    justify-content: space-between;
+    /*align-items: flex-end; */
+    background: rgba(0, 0, 0, 0.5);
 }
 #main {
   list-style: none;
@@ -60,7 +73,7 @@ nav{
   text-transform: uppercase;
   display: inline-block;
   padding: 0;
-  margin: auto;
+  align-self: center;
 }
 #main li {
   font-size: 0.8rem;

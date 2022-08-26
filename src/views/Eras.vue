@@ -2,11 +2,11 @@
   <div class="container" v-if="era">
     <h1>Era: {{era[0].era_name}}</h1>
     <h3>UP UNTIL  {{era[0].era_period}}</h3>
-    <p>{{era[0].history}}</p>
+    <p>{{era[0].history}} <br><br> {{era[0].history2}} <br><br> {{era[0].history3}}</p>
     <h1>Weapons from this era:</h1>
     <div v-if="eraweapons" class="weapons">
         <div class="card" v-for="weapon in eraweapons" :key="weapon">
-            <h3>{{weapon.name}}</h3>
+            <h5>{{weapon.name}}</h5>
             <img :src="weapon.image" alt="Weapon Image">
         </div>
     </div>
@@ -77,7 +77,7 @@ img{
     background-color: #E5E4E2;
 }
 
-.card>h3{
+.card>h5{
     border-bottom: 3px solid #FFD700;
 }
 </style>

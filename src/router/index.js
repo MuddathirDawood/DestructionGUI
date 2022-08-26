@@ -22,6 +22,16 @@ const routes = [
     name: 'Eras',
     component: () => import('../views/Eras.vue'),
     props: true
+  },{
+    path: '/weaponsEra/:id',
+    name: 'Weapons',
+    component: () => import('../views/Weapons.vue'),
+    props: true
+  },{
+    path: '/weapons/:id',
+    name: 'Weapon',
+    component: () => import('../views/Weapon.vue'),
+    props: true
   }
 ]
 

@@ -6,6 +6,7 @@ export default createStore({
     weapon: null,
     era: null,
     eras: null,
+    weaponsEra: null,
   },
   getters: {
   },
@@ -18,7 +19,13 @@ export default createStore({
     },
     setEras(context, eras){
       context.eras = eras;
-    },    
+    },
+    setWeaponsEra(context, weaponsEra){
+      context.weaponsEra = weaponsEra;
+    },
+    setWeapon(context, weapon){
+      context.weapon = weapon;
+    },        
   },
   actions: {
     async getEra(context, id){
@@ -35,7 +42,17 @@ export default createStore({
       let fetched = await fetch('https://destructionapi.herokuapp.com/eras/weapons/' + id);
       let res = await fetched.json();
       context.commit('setEraWeapon',res.era_weapons)
-    },       
+    },    
+    async getWeaponsEra(context, id){
+      let fetched = await fetch('https://destructionapi.herokuapp.com/weapons/era/' + id);
+      let res = await fetched.json();
+      context.commit('setWeaponsEra',res.weapons_era)
+    },    
+    async getWeapon(context, id){
+      let fetched = await fetch('https://destructionapi.herokuapp.com/weapons/' + id);
+      let res = await fetched.json();
+      context.commit('setWeapon',res.weapon)
+    },             
   },
   modules: {
   }

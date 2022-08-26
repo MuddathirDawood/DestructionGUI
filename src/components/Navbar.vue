@@ -7,11 +7,9 @@
       <li>Weapons +
         <ul class="drop">
           <div>
-            <li>Prehistory and the Ancient World</li>
-            <li>Early Middle Ages</li>
-            <li>Late Middle Ages</li>
-            <li>Early Modern Period</li>
-            <li>Modern Period</li>
+                <li v-for="era in eras" :key="era">
+                  <router-link @click="getWeapons(era.era_id)" :to="{name: 'Weapons', params: {id: era.era_id}}">{{era.era_name}}</router-link>
+                </li>
           </div>
         </ul>
       </li>
@@ -19,7 +17,7 @@
           <ul class="drop">
             <div>
                 <li v-for="era in eras" :key="era">
-                  <router-link @click="get(era.era_id)" :to="{name: 'Eras', params: {id: era.era_id}}">{{era.era_name}}</router-link>
+                  <router-link @click="getEras(era.era_id)" :to="{name: 'Eras', params: {id: era.era_id}}">{{era.era_name}}</router-link>
                 </li>
             </div>
           </ul>
@@ -41,9 +39,12 @@ export default {
       }
     },
     methods:{
-      get(id){
+      getEras(id){
         this.$store.dispatch('getEra', id)
         this.$store.dispatch('getEraWeapons', id)
+      },
+      getWeapons(id){
+        this.$store.dispatch('getWeaponsEra', id)
       }
     },
 }

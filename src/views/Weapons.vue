@@ -35,7 +35,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
 .container{
-    background: url(https://i.postimg.cc/2ynsYVps/minimal-abstract-light-silver-gold-background-105940-795.jpg) no-repeat center center/cover;
+    /* background: url(https://i.postimg.cc/2ynsYVps/minimal-abstract-light-silver-gold-background-105940-795.jpg) no-repeat center center/cover; */
     display: flex;
     justify-content: center;
     flex-flow: row wrap;

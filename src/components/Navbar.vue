@@ -35,20 +35,28 @@
 
       </div>
     </div>
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#Menu" id="menubtn">
-  <ion-icon name="grid-outline"></ion-icon>
-</button>
+    <div class="mobile">
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#Menu" id="menubtn">
+        <ion-icon name="grid-outline"></ion-icon>
+      </button>
+      <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#favs" id="menubtn">
+        <ion-icon name="bookmarks-outline"></ion-icon>
+      </button>
+    </div>
 
 <!-- OFFCANVAS MENU -->
 <MenuBar :eras="eras" :user="user"/>
+<Favourites/>
 
   </nav>
 </template>
 
 <script>
+import Favourites from './Favourites.vue'
 import MenuBar from './MenuBar.vue'
 export default {
-  components: { MenuBar },
+  components: { MenuBar, Favourites },
     mounted(){
       this.$store.dispatch('getEras')
     },
@@ -208,12 +216,31 @@ li{
   }
 }
 
+/* ----------------------------------- MOBILE ------------------------------------------- */
+#menubtn{
+  margin: 0 !important;
+}
+
+.mobile{
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 49px;  
+  display: none;
+}
+
+.mobile img{
+  height: 49px;
+}
+
+
 @media (max-width: 730px){
   .row{
     display: none;
   }
-  #menubtn{
-    display: block !important;
+  .mobile{
+
+    display: block;
   }
 }
 </style>

@@ -1,6 +1,10 @@
 <template>
   <nav>
-    <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
+    <div class="row">
+      <div class="col-5">
+        <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
+      </div>
+      <div class="col-xl-7">
     <ul id="main">
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/about">About</router-link></li>
@@ -23,14 +27,28 @@
           </ul>
       </li>
       <li v-if="user">Account</li>
-      <li><router-link to="/login">Log In</router-link></li>
-      <li><router-link to="/register">Register</router-link></li>
+      <div v-else>
+        <li><router-link to="/login">Log In</router-link></li>
+        <li><router-link to="/register">Register</router-link></li>
+      </div>
     </ul>
+
+      </div>
+    </div>
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#Menu" id="menubtn">
+  <ion-icon name="grid-outline"></ion-icon>
+</button>
+
+<!-- OFFCANVAS MENU -->
+<MenuBar :eras="eras" :user="user"/>
+
   </nav>
 </template>
 
 <script>
+import MenuBar from './MenuBar.vue'
 export default {
+  components: { MenuBar },
     mounted(){
       this.$store.dispatch('getEras')
     },
@@ -55,6 +73,15 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'customFont';
+    src: url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff2') format('woff2'),
+         url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 *{
   margin: 0;
   padding: 0;
@@ -65,8 +92,8 @@ img{
     width: 300px;
 }
 nav{
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
     /*align-items: flex-end; */
     background: rgba(0, 0, 0, 0.5);
 }
@@ -76,9 +103,12 @@ nav{
   font-weight: 400;
   font-size: 0;
   text-transform: uppercase;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 0;
-  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 #main li {
   font-size: 0.8rem;
@@ -87,6 +117,7 @@ nav{
   padding: 15px 20px;
   cursor: pointer;
   z-index: 5;
+  font-family: "customFont";
   min-width: 120px;
 }
 
@@ -94,10 +125,12 @@ li>a{
   text-decoration: none;
   margin: 0;
   color: #FFD700;
+  font-size: 17px;
 }
 li{
   margin: 0;
   color: #FFD700;
+  font-size: 17px;
 }
 
 .drop {
@@ -133,6 +166,7 @@ li{
   color: black;
   letter-spacing: 0.1em;
   transition: all 1.2s;
+  font-size: 18px;
 }
 
 .drop li>a{
@@ -163,5 +197,23 @@ li{
 
 #main li:nth-child(4):hover .drop {
   transform: translate(0,0);
+}
+
+@media (max-width: 1100px){
+  .col-5{
+    display: none;
+  }
+  .col-xl-7{
+    text-align: center;
+  }
+}
+
+@media (max-width: 730px){
+  .row{
+    display: none;
+  }
+  #menubtn{
+    display: block !important;
+  }
 }
 </style>

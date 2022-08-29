@@ -33,6 +33,12 @@ header{
   min-width: 100vw;
 }
 
+@media (max-width:1100px){
+  header{
+    height: 49px;
+  }
+}
+
 main{
   min-height: 100vh;
   min-width: 100vw;

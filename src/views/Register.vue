@@ -2,19 +2,49 @@
   <div class="container">
      <h1>Register</h1>
      <form>
-        <div><label for="username">Username: </label><input type="text" name="username"></div>
-        <div><label for="email">Email Address: </label><input type="email" name="email"></div>
-        <div><label for="password">Password: </label><input type="password" name="username"></div>
-        <div><label for="conpassword">Confirm Password: </label><input type="password" name="conpassword"></div>
-        <div><label for="phone">Phone Number: </label><input type="number" name="phone" maxlength="10"></div>
+        <div><label for="username">Username: </label><input type="text" name="username" v-model="username"></div>
+        <div><label for="email">Email Address: </label><input type="email" name="email" v-model="emailAddress"></div>
+        <div><label for="password">Password: </label><input type="password" name="password" v-model="password"></div>
+        <div><label for="conpassword">Confirm Password: </label><input type="password" name="conpassword" v-model="conpassword"></div>
+        <div><label for="phone">Phone Number: </label><input type="number" name="phone" maxlength="10" v-model="phone_number"></div>
      </form>
-     <button type="submit">Submit</button>
+     <button type="button" @click="register">Submit</button>
   </div>
 </template>
 
 <script>
 export default {
+    data(){
+        return{
+            username: '',
+            emailAddress: '',
+            phone_number: '',
+            password:'',
+            conpassword:''
+        }
+    },
+    methods:{
+        register(){
+            if (this.password = this.conpassword) {
+                const payload = {
+                    username: this.username,
+                    emailAddress: this.emailAddress,
+                    phone_number: this.phone_number,
+                    password:this.password,
+                }
 
+                this.$store.dispatch('register', payload)
+
+            } else {
+                swal({
+                icon: "warning",    
+                text: "Password does not match",
+                button: "Try Again"
+                })
+            }
+
+        }
+    }
 }
 </script>
 

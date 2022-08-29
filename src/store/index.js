@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -7,6 +8,8 @@ export default createStore({
     era: null,
     eras: null,
     weaponsEra: null,
+    user: null,
+    token: null
   },
   getters: {
   },
@@ -25,7 +28,13 @@ export default createStore({
     },
     setWeapon(context, weapon){
       context.weapon = weapon;
-    },        
+    },
+    setUser(context, user){
+      context.user = user;
+    },
+    setToken(context, token){
+      context.token = token;
+    },          
   },
   actions: {
     async getEra(context, id){
@@ -52,7 +61,82 @@ export default createStore({
       let fetched = await fetch('https://destructionapi.herokuapp.com/weapons/' + id);
       let res = await fetched.json();
       context.commit('setWeapon',res.weapon)
-    },             
+    },
+    register(context, payload){
+      fetch('https://destructionapi.herokuapp.com/users', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.msg == "The provided email already exists") {
+          swal({
+          icon: "error",
+          title:  "The provided email exists.",
+          text: "Please enter another one",
+          button: "Try Again"
+          });
+        } else {
+          swal({
+            icon: "success",
+            title: "Registration Successful",
+            button: "OK"
+          })
+          context.commit('setToken',data.token);
+          setTimeout(()=>{
+            router.push('/login'), 5000
+          })
+        }
+
+      });
+
+    },
+    login(context, payload){
+      fetch('https://destructionapi.herokuapp.com/users', {
+      method: 'PATCH',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.msg == 'Email Not Found') {
+          swal({
+            icon: "error",
+            title:  "Email Not Found",
+            text: "Please register or make sure you typed in the right email",
+            button: "Try Again"
+            });
+        } else {
+          if (data.msg == 'Password is Incorrect') {
+            swal({
+              icon: "error",
+              title:  "Password is Incorrect",
+              button: "Try Again"
+              });
+          } else {
+            swal({
+            icon: "info",
+            title:  `Welcome, ${data.user[0].username}`,
+            closeOnClickOutside: false,
+            closeOnEsc: true,
+            })
+            context.commit('setUser',data.user[0])
+            context.commit('setToken',data.token)
+            // context.dispatch('getUserFavs')
+            setTimeout(()=>{
+              router.push('/'), 5000
+            })
+          }
+        }
+
+      });
+
+    },                     
   },
   modules: {
   }

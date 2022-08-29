@@ -3,7 +3,7 @@
       <div class="container">
         <div class="footer-cta py-5">
             <div class="row">
-                <div class="col-xl-4 col-md-4 mb-30">
+                <div class="col-xl-4 col-md-4 my-auto">
                     <div class="single-cta">
                         <ion-icon name="map-outline"></ion-icon>
                         <div class="cta-text">
@@ -12,7 +12,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-md-4 mb-30">
+                <div class="col-xl-4 col-md-4 my-auto">
                     <div class="single-cta">
                         <ion-icon name="phone-portrait-outline"></ion-icon>
                         <div class="cta-text">
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-md-4 mb-30">
+                <div class="col-xl-4 col-md-4 my-auto">
                     <div class="single-cta">
                         <ion-icon name="send-outline"></ion-icon>
                         <div class="cta-text">

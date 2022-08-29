@@ -2,16 +2,30 @@
   <div class="container">
      <h1>Login</h1>
      <form>
-        <div><label for="email">Email Address: </label><input type="email" name="email"></div>
-        <div><label for="password">Password: </label><input type="password" name="username"></div>
+        <div><label for="email">Email Address: </label><input type="email" name="email" v-model="emailAddress"></div>
+        <div><label for="password">Password: </label><input type="password" name="password" v-model="password"></div>
      </form>
-     <button type="submit">Submit</button>
+     <button type="button" @click="login">Submit</button>
   </div>
 </template>
 
 <script>
 export default {
-
+    data(){
+        return{
+            emailAddress: '',
+            password: ''
+        }
+    },
+    methods:{
+        login(){
+            const payload = {
+                emailAddress: this.emailAddress,
+                password: this.password
+            }
+            this.$store.dispatch('login',payload)
+        }
+    }
 }
 </script>
 

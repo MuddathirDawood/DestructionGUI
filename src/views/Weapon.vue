@@ -8,9 +8,10 @@
         <div id="divider"></div>
         <p>{{weapon[0].description}}</p>
         <div id="buttons">
-            <a onclick="history.back(-1)">Back</a>
-            <a>Contact For More Information</a>
+            <a onclick="history.back(-1)" class="buttons">Back</a>
+            <a class="buttons">Contact For More Information</a>
         </div>
+            <a id="fav"><ion-icon name="bookmark-outline"></ion-icon></a>
     </div>
   </div>
 </template>
@@ -97,17 +98,39 @@ p{
     justify-content: space-between;
 }
 
-a{
+.buttons{
     border-top: 2px solid #FFD700;
     border-bottom: 2px solid #FFD700;
     letter-spacing: 2px;
     transition: all 1s;
+    text-decoration: none;
+    color: #E5E4E2;
 }
 
-a:hover{
+.buttons:hover{
     letter-spacing: 3px;
     transition: all 1s;
 }
 
+#fav{
+    margin-top: 30px;
+    background: #E5E4E2;
+    padding: 5px;
+    border-radius: 100%;
+    box-shadow: 0 3px 1px #E5E4E2;
+    border: 1px solid #949393;
+    transition: all .7s;
+}
+
+ion-icon{
+    font-size: 40px;
+    color: #FFD700;
+}
+
+#fav:hover{
+    background: #949393;
+    box-shadow: 0 1px 1px #E5E4E2;
+    transition: all .7s;
+}
 
 </style>

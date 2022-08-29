@@ -22,6 +22,7 @@
             </div>
           </ul>
       </li>
+      <li v-if="user">Account</li>
       <li><router-link to="/login">Log In</router-link></li>
       <li><router-link to="/register">Register</router-link></li>
     </ul>
@@ -36,6 +37,9 @@ export default {
     computed:{
       eras(){
         return this.$store.state.eras
+      },
+      user(){
+        return this.$store.state.user
       }
     },
     methods:{

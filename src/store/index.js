@@ -9,7 +9,8 @@ export default createStore({
     eras: null,
     weaponsEra: null,
     user: null,
-    token: null
+    token: null,
+    weapons: null
   },
   getters: {
   },
@@ -34,7 +35,10 @@ export default createStore({
     },
     setToken(context, token){
       context.token = token;
-    },          
+    },
+    setWeapons(context, weapons){
+      context.weapons = weapons;
+    },                    
   },
   actions: {
     async getEra(context, id){
@@ -61,6 +65,11 @@ export default createStore({
       let fetched = await fetch('https://destructionapi.herokuapp.com/weapons/' + id);
       let res = await fetched.json();
       context.commit('setWeapon',res.weapon)
+    },    
+    async getWeapons(context){
+      let fetched = await fetch('https://destructionapi.herokuapp.com/weapons');
+      let res = await fetched.json();
+      context.commit('setWeapons',res.weapons)
     },
     register(context, payload){
       fetch('https://destructionapi.herokuapp.com/users', {

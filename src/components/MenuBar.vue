@@ -41,6 +41,8 @@
     </div>      
     <div v-if="user" data-bs-toggle="offcanvas" data-bs-target="#account">
       Account
+        <li v-if="user.userRole == 'admin'"><router-link to="/admin">Admin</router-link></li>
+
     </div>
     <div v-else id="acc">
     <div>
@@ -62,7 +64,7 @@ export default {
 
 <style>
 @font-face {
-    font-family: 'customFont';
+    font-family: 'Destruction';
     src: url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff2') format('woff2'),
          url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff') format('woff');
     font-weight: normal;
@@ -118,7 +120,7 @@ export default {
 
 .list>a{
   text-decoration: none;
-  font-family: 'customFont';
+  font-family: 'Destruction';
   margin: 0;
   color: #FFD700;
   text-transform: uppercase;

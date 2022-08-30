@@ -45,6 +45,7 @@ export default {
     gap: 50px;
     min-width: 100vw;
     min-height: 100vh;
+	padding: 20px;
 }
 
 /* LOADING BAR */
@@ -64,7 +65,7 @@ export default {
 
 .ball {
     background-color: rgba(0,0,0,0);
-    border: 10px solid #FFD70080;
+    border: 10px solid #ffd90083;
     opacity: .9;
     border-top: 5px solid rgba(0,0,0,0);
     border-left: 5px solid rgba(0,0,0,0);

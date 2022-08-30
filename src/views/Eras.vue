@@ -1,13 +1,15 @@
 <template>
   <div class="container" v-if="era">
     <h1>Era: {{era[0].era_name}}</h1>
-    <h3>UP UNTIL  {{era[0].era_period}}</h3>
+    <h3 class="text-white">UP UNTIL  {{era[0].era_period}}</h3>
     <p>{{era[0].history}} <br><br> {{era[0].history2}} <br><br> {{era[0].history3}}</p>
-    <h1>Weapons from this era:</h1>
+    <h1 class="mb-4">Weapons from this era:</h1>
     <div v-if="eraweapons" class="weapons">
         <div class="card" v-for="weapon in eraweapons" :key="weapon">
-            <h5>{{weapon.name}}</h5>
-            <img :src="weapon.image" alt="Weapon Image">
+                <img :src="weapon.image" alt="Weapon Image" class="img-fluid">
+                <div class="content p-1">
+                    <h5>{{weapon.name}}</h5>
+                </div>    
         </div>
     </div>
   </div>
@@ -40,6 +42,13 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@font-face {
+    font-family: 'Destruction';
+    src: url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff2') format('woff2'),
+         url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .container{
     /* background: url(https://i.postimg.cc/2ynsYVps/minimal-abstract-light-silver-gold-background-105940-795.jpg) no-repeat center center/cover; */
@@ -54,25 +63,28 @@ export default {
 p{
     padding: 35px;
     font-family: FontAwesome;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    color: #E5E4E2;
 }
 
 h1{
     font-family: 'Audiowide', cursive;
     margin-top: 50px;
+    color: #E5E4E2;
 }
 
 img{
-    width: 250px; 
-    height: 250px;
-    /* border-top: 1px solid black; */
+    width: 275px; 
+    height: 280px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .weapons{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
     margin-bottom: 15px;
 }
 
@@ -80,12 +92,20 @@ img{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 0;
-    background-color: #E5E4E2;
+    border-radius: 10px;
+    background: #e5e4e289;
+    border: #FFD700 1px solid;
 }
 
-.card>h5{
-    border-bottom: 3px solid #FFD700;
+.content{
+    position: relative;
+    color: black;
+    text-align: center;
+    z-index: 5;
+    width: 100%;
+    font-family: 'Destruction';
+    color: #FFD700;
+    border-top: 2px solid black;
 }
 
 /* LOADING BAR */

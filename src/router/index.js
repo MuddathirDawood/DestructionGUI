@@ -32,6 +32,11 @@ const routes = [
     name: 'Weapon',
     component: () => import('../views/Weapon.vue'),
     props: true
+  },{
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/Admin.vue'),
+    props: true
   }
 ]
 

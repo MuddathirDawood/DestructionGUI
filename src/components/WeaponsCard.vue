@@ -115,7 +115,7 @@ export default {
 }
  .blog-card .description {
 	 padding: 1rem;
-	 background: #fff;
+	 background: #E5E4E2;
 	 position: relative;
 	 z-index: 1;
 }
@@ -135,6 +135,7 @@ export default {
 	 font-weight: 300;
 	 text-transform: uppercase;
 	 color: #a2a2a2;
+     font-family: 'Destruction';
 	 margin-top: 5px;
 }
  .blog-card .description .read-more {
@@ -176,7 +177,7 @@ export default {
  .blog-card:hover .details {
 	 left: 0%;
 }
- @media (min-width: 640px) {
+ @media (min-width: 500px) {
 	 .blog-card {
 		 flex-direction: row;
 		 max-width: 700px;
@@ -191,7 +192,7 @@ export default {
 	 .blog-card .description:before {
 		 transform: skewX(-3deg);
      content: '';
-		 background: #fff;
+		 background: #E5E4E2;
 		 width: 30px;
 		 position: absolute;
 		 left: -10px;

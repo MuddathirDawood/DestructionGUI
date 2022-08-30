@@ -7,6 +7,7 @@
         <div><label for="password">Password: </label><input type="password" name="password" v-model="password"></div>
         <div><label for="conpassword">Confirm Password: </label><input type="password" name="conpassword" v-model="conpassword"></div>
         <div><label for="phone">Phone Number: </label><input type="number" name="phone" maxlength="10" v-model="phone_number"></div>
+        <div><label for="profilePic">Profile Picture: </label><input type="text" name="profile" v-model="profilePic"></div>
      </form>
     <div class="containers" v-if="click && !token">
         <div class="wrapper">
@@ -31,6 +32,7 @@ export default {
             phone_number: '',
             password:'',
             conpassword:'',
+            profilePic:'',
             click: false
         }
     },
@@ -42,7 +44,8 @@ export default {
                     username: this.username,
                     emailAddress: this.emailAddress,
                     phone_number: this.phone_number,
-                    password:this.password,
+                    password: this.password,
+                    profilePic: this.profilePic,
                 }
 
                 this.$store.dispatch('register', payload)
@@ -119,6 +122,7 @@ label{
     font-size: 24px;
     line-height: 29px;
     text-align: start;
+    letter-spacing: .8px;
     width: 200px;
 }
 

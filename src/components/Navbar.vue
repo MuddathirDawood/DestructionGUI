@@ -1,10 +1,10 @@
 <template>
   <nav>
     <div class="row">
-      <div class="col-5">
+      <div class="col-4">
         <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
       </div>
-      <div class="col-xl-7">
+      <div class="col-xl-8">
     <ul id="main">
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/about">About</router-link></li>
@@ -26,8 +26,11 @@
             </div>
           </ul>
       </li>
-      <li v-if="user" data-bs-toggle="offcanvas" data-bs-target="#account">Account</li>
-      <li v-if="user" data-bs-toggle="offcanvas" data-bs-target="#favs">Favourites</li>
+      <div v-if="user">
+        <li data-bs-toggle="offcanvas" data-bs-target="#account">Account</li>
+        <li data-bs-toggle="offcanvas" data-bs-target="#favs">Favourites</li>
+        <li v-if="user.userRole == 'admin'"><router-link to="/admin">Admin</router-link></li>
+      </div>
       <div v-else>
         <li><router-link to="/login">Log In</router-link></li>
         <li><router-link to="/register">Register</router-link></li>
@@ -86,7 +89,7 @@ export default {
 
 <style scoped>
 @font-face {
-    font-family: 'customFont';
+    font-family: 'Destruction';
     src: url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff2') format('woff2'),
          url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff') format('woff');
     font-weight: normal;
@@ -127,7 +130,7 @@ nav{
   padding: 15px 20px;
   cursor: pointer;
   z-index: 5;
-  font-family: "customFont";
+  font-family: "Destruction";
   min-width: 120px;
 }
 

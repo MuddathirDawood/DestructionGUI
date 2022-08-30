@@ -49,7 +49,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 @font-face {
-    font-family: 'Font1';
+    font-family: 'Destruction';
     src: url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff2') format('woff2'),
          url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff') format('woff');
     font-weight: normal;
@@ -73,7 +73,7 @@ h1{
 }
 
 h3{
-    font-family: 'Font1';
+    font-family: 'Destruction';
     font-size: 25px;
 }
 

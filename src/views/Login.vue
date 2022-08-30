@@ -5,7 +5,17 @@
         <div><label for="email">Email Address: </label><input type="email" name="email" v-model="emailAddress"></div>
         <div><label for="password">Password: </label><input type="password" name="password" v-model="password"></div>
      </form>
-     <button type="button" @click="login">Submit</button>
+    <div class="containers" v-if="click && !user">
+        <div class="wrapper">
+          <div class="ball"></div>
+          <div class="ball1"></div>
+          <div class="ball2"></div>
+        </div>
+    </div>
+     <button type="button" @click="login" v-else-if="!user" class="button">Submit</button>
+    <div v-if="user" class="mt-4">
+        <h3>Welcome {{user.username}}</h3>
+    </div>
   </div>
 </template>
 
@@ -14,16 +24,23 @@ export default {
     data(){
         return{
             emailAddress: '',
-            password: ''
+            password: '',
+            click: false
         }
     },
     methods:{
         login(){
+            this.click=true
             const payload = {
                 emailAddress: this.emailAddress,
                 password: this.password
             }
             this.$store.dispatch('login',payload)
+        }
+    },
+    computed:{
+        user(){
+            return this.$store.state.user
         }
     }
 }
@@ -31,6 +48,15 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@font-face {
+    font-family: 'Font1';
+    src: url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff2') format('woff2'),
+         url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 .container{
     background: url(https://i.postimg.cc/2ynsYVps/minimal-abstract-light-silver-gold-background-105940-795.jpg) no-repeat center center/cover;
     display: flex;
@@ -46,22 +72,9 @@ h1{
     margin-bottom: 50px;
 }
 
-button{
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    width: 125px;
-    height: 30px;
-    margin: 25px;
-    transition: all 1s ease-in-out;
-    background: linear-gradient(to top,#FFD700 0%,#E5E4E2 12%) !important;
-}
-
-button:hover{
-    background-color: #E5E4E2;
-    background: linear-gradient(to top,#FFD700 0%,#E5E4E2 18%) !important;
-    border: 1px solid #FFD700;
-    transition: all 1s ease-in-out;
+h3{
+    font-family: 'Font1';
+    font-size: 25px;
 }
 
 form{
@@ -103,6 +116,96 @@ input[type=email]{
 }
 input[type=email]:focus{
     text-align: center;
+}
+
+/* BUTTON */
+.button{
+    border-right: 0;
+    background: transparent;
+    border-left: 0;
+    border-top: 2px solid #FFD700;
+    border-bottom: 2px solid #FFD700;
+    letter-spacing: 3px;
+    transition: all 1s;
+    text-decoration: none;
+    font-size: larger;
+    color: Black;
+}
+
+.button:hover{
+    letter-spacing: 8px;
+    transition: all 1s;
+}
+
+
+/* LOADING BAR */
+.containers {
+  width: 100vw;
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.ball1 {
+    background-color: rgba(0,0,0,0);
+    border: 7px solid #ffd900ac;
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 100%;
+/*     box-shadow: 0 0 15px #2187e7; */
+    width: 60%;
+    height: 60%;
+    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    animation: spin-counterclockwise 3.2s infinite linear;
+}
+
+.ball2 {
+  margin: 0 auto;
+  position: relative;
+  top: -290px;
+  background-color: #5e5e5e2e;
+  background-image: url("https://image.flaticon.com/icons/svg/744/744104.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 100%;
+  box-shadow: 0 0 10px #FFD700;
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  animation: spin-clockwise 3.8s infinite linear;
+}
+
+@keyframes spin-clockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    };
+}
+
+@keyframes spin-counterclockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    };
 }
 
 </style>

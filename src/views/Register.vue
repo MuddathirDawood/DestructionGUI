@@ -8,7 +8,17 @@
         <div><label for="conpassword">Confirm Password: </label><input type="password" name="conpassword" v-model="conpassword"></div>
         <div><label for="phone">Phone Number: </label><input type="number" name="phone" maxlength="10" v-model="phone_number"></div>
      </form>
-     <button type="button" @click="register">Submit</button>
+    <div class="containers" v-if="click && !token">
+        <div class="wrapper">
+          <div class="ball"></div>
+          <div class="ball1"></div>
+          <div class="ball2"></div>
+        </div>
+    </div>
+     <button type="button" @click="register" v-else-if="!token" class="button">Submit</button>
+    <div v-if="token" class="mt-4">
+        <h3>Please Proceed to the Log In</h3>
+    </div>
   </div>
 </template>
 
@@ -20,12 +30,14 @@ export default {
             emailAddress: '',
             phone_number: '',
             password:'',
-            conpassword:''
+            conpassword:'',
+            click: false
         }
     },
     methods:{
         register(){
-            if (this.password = this.conpassword) {
+            this.click = true
+            if (this.password === this.conpassword) {
                 const payload = {
                     username: this.username,
                     emailAddress: this.emailAddress,
@@ -41,8 +53,14 @@ export default {
                 text: "Password does not match",
                 button: "Try Again"
                 })
+                this.click = false
             }
 
+        }
+    },
+    computed:{
+        token(){
+            return this.$store.state.token
         }
     }
 }
@@ -65,22 +83,23 @@ h1{
     margin-bottom: 50px;
 }
 
-button{
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    width: 125px;
-    height: 30px;
-    margin: 25px;
-    transition: all 1s ease-in-out;
-    background: linear-gradient(to top,#FFD700 0%,#E5E4E2 12%) !important;
+/* BUTTON */
+.button{
+    border-right: 0;
+    background: transparent;
+    border-left: 0;
+    border-top: 2px solid #FFD700;
+    border-bottom: 2px solid #FFD700;
+    letter-spacing: 3px;
+    transition: all 1s;
+    text-decoration: none;
+    font-size: larger;
+    color: Black;
 }
 
-button:hover{
-    background-color: #E5E4E2;
-    background: linear-gradient(to top,#FFD700 0%,#E5E4E2 18%) !important;
-    border: 1px solid #FFD700;
-    transition: all 1s ease-in-out;
+.button:hover{
+    letter-spacing: 8px;
+    transition: all 1s;
 }
 
 form{
@@ -136,5 +155,76 @@ input[type=number]{
 }
 input[type=number]:focus{
     text-align: center;
+}
+
+
+/* LOADING BAR */
+.containers {
+  width: 100vw;
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.ball1 {
+    background-color: rgba(0,0,0,0);
+    border: 7px solid #ffd900ac;
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 100%;
+/*     box-shadow: 0 0 15px #2187e7; */
+    width: 60%;
+    height: 60%;
+    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    animation: spin-counterclockwise 3.2s infinite linear;
+}
+
+.ball2 {
+  margin: 0 auto;
+  position: relative;
+  top: -290px;
+  background-color: #5e5e5e2e;
+  background-image: url("https://image.flaticon.com/icons/svg/744/744104.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 100%;
+  box-shadow: 0 0 10px #FFD700;
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  animation: spin-clockwise 3.8s infinite linear;
+}
+
+@keyframes spin-clockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    };
+}
+
+@keyframes spin-counterclockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    };
 }
 </style>

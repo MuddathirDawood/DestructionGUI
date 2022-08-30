@@ -6,10 +6,10 @@
   </div>
   <div class="offcanvas-body">
     <div>
-      Home
+      <router-link to="/">Home</router-link>
     </div>
     <div>
-      About
+      <router-link to="/about">About</router-link>
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
@@ -39,15 +39,15 @@
         </div>
       </div>
     </div>      
-    <div v-if="user">
+    <div v-if="user" data-bs-toggle="offcanvas" data-bs-target="#account">
       Account
     </div>
-    <div v-else>
+    <div v-else id="acc">
     <div>
-      Log In
+      <router-link to="/login">Login</router-link>
     </div>
     <div>
-      Register
+      <router-link to="/register">Register</router-link>
     </div>
     </div>
   </div>
@@ -101,9 +101,19 @@ export default {
   font-size: 21px;
 }
 
+.offcanvas-body>div>a{
+  text-decoration: none;
+  color: #E5E4E2;
+}
+
 .accordion-item button{
   font-family: FontAwesome;
   font-size: 21px;
+}
+
+#acc div a{
+  text-decoration: none;
+  color: #E5E4E2;
 }
 
 .list>a{

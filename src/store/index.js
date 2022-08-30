@@ -120,7 +120,7 @@ export default createStore({
               });
           } else {
             swal({
-            icon: "info",
+            icon: "success",
             title:  `Welcome, ${data.user[0].username}`,
             closeOnClickOutside: false,
             closeOnEsc: true,

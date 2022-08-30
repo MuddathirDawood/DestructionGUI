@@ -1,8 +1,8 @@
 <template>
-  <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="favs">
+  <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="account" v-if="user">
   <div class="offcanvas-header">
-    <button type="button" data-bs-dismiss="offcanvas" id="menubtn"><ion-icon name="grid-outline"></ion-icon></button>
-    <h4 class="offcanvas-title" id="favsLabel">Destruction Favourites</h4>
+    <button type="button" data-bs-dismiss="offcanvas" id="menubtn"><ion-icon name="exit-outline"></ion-icon></button>
+    <h4 class="offcanvas-title" id="favsLabel">{{user.username}}'s Account Details</h4>
   </div>
   <div class="offcanvas-body">
 
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    props: ['eras', 'user'],
+    props: ['user'],
 }
 </script>
 
@@ -48,8 +48,8 @@ export default {
 }
 
 .offcanvas h4{
-  margin-left: 15px;
   font-family: 'Audiowide', cursive;
+  margin-left: 15px;
 }
 
 .offcanvas-body div{
@@ -84,7 +84,6 @@ export default {
 }
 
 #menubtn{
-  display: block !important;
-}
-
+    display: block !important;
+  }
 </style>

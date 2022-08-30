@@ -26,7 +26,8 @@
             </div>
           </ul>
       </li>
-      <li v-if="user">Account</li>
+      <li v-if="user" data-bs-toggle="offcanvas" data-bs-target="#account">Account</li>
+      <li v-if="user" data-bs-toggle="offcanvas" data-bs-target="#favs">Favourites</li>
       <div v-else>
         <li><router-link to="/login">Log In</router-link></li>
         <li><router-link to="/register">Register</router-link></li>
@@ -47,16 +48,19 @@
 
 <!-- OFFCANVAS MENU -->
 <MenuBar :eras="eras" :user="user"/>
-<Favourites/>
+<Favourites :eras="eras" :user="user"/>
+<Account :user="user"/>
 
   </nav>
 </template>
 
 <script>
+import Account from './Account.vue'
 import Favourites from './Favourites.vue'
 import MenuBar from './MenuBar.vue'
+
 export default {
-  components: { MenuBar, Favourites },
+  components: { MenuBar, Favourites, Account },
     mounted(){
       this.$store.dispatch('getEras')
     },
@@ -100,10 +104,8 @@ img{
     width: 300px;
 }
 nav{
-    /* display: flex;
-    justify-content: space-between; */
-    /*align-items: flex-end; */
-    background: rgba(0, 0, 0, 0.5);
+    height: 0;
+    background: rgba(0, 0, 0, 0.55);
 }
 #main {
   list-style: none;
@@ -163,7 +165,7 @@ li{
   transition: all 0.5s 0.1s;
   background: #E5E4E2 !important;
   position: relative;
-  width: 200px;
+  width: 225px;
 }
 .drop li {
   display: block;
@@ -179,6 +181,7 @@ li{
 
 .drop li>a{
   color: black;
+  font-size: 15px;
 }
 
 .drop li:hover{
@@ -231,6 +234,7 @@ li{
 
 .mobile img{
   height: 49px;
+  display: none;
 }
 
 
@@ -239,7 +243,9 @@ li{
     display: none;
   }
   .mobile{
-
+    display: block;
+  }
+  .mobile img{
     display: block;
   }
 }

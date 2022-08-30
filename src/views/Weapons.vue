@@ -1,24 +1,20 @@
 <template>
   <div class="container" v-if="weaponsEra">
-        <div class="blog-card" v-for="weapons in weaponsEra" :key="weapons">
-            <div class="meta">
-              <div class="photo">
-                <img :src="weapons.image" alt="Weapon Image">
-              </div>
-            </div>
-            <div class="description">
-              <h1>{{weapons.name}}</h1>
-              <h2>{{weapons.era_name}}</h2>
-              <p class="read-more">
-                    <router-link :to="{name: 'Weapon', params: {id: weapons.weapon_id}}"><span></span>Details</router-link>
-              </p>
-            </div>
-        </div>
+	<WeaponsCard  v-for="weapons in weaponsEra" :key="weapons" :weapons="weapons"/>
+  </div>
+  <div class="containers" v-else>
+    <div class="wrapper">
+      <div class="ball"></div>
+      <div class="ball1"></div>
+      <div class="ball2"></div>
+    </div>
   </div>
 </template>
 
 <script>
+import WeaponsCard from '@/components/WeaponsCard.vue'
 export default {
+  components: { WeaponsCard },
     props: ['id'],
     mounted(){
         this.$store.dispatch('getWeaponsEra', this.id)
@@ -51,197 +47,89 @@ export default {
     min-height: 100vh;
 }
 
-
-
-
- .blog-card {
-	 display: flex;
-     height: 200px;
-     width: 35rem;
-	 flex-direction: column;
-	 box-shadow: 0 3px 7px -1px rgba(0, 0, 0, .1);
-	 margin-bottom: 1.6%;
-	 background: #fff;
-	 line-height: 1.4;
-	 font-family: sans-serif;
-	 border-radius: 5px;
-	 overflow: hidden;
-	 z-index: 0;
-}
- .blog-card a {
-	 color: inherit;
-   width: 100px;
-}
- .blog-card a:hover {
-	 color: #5ad67d;
-}
- .blog-card:hover .photo {
-	 transform: scale(1.3) rotate(15deg);
-}
- .blog-card .meta {
-	 position: relative;
-	 z-index: 0;
-	 height: 200px;
-}
- .blog-card .photo {
-	 position: absolute;
-     width: 100%;
-     height: 100%;
-	 top: 0;
-	 right: 0;
-	 bottom: 0;
-	 left: 0;
-	 background-size: cover;
-	 background-position: center;
-	 transition: transform 0.2s;
+/* LOADING BAR */
+.containers {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.photo>img{
+.wrapper {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.ball {
+    background-color: rgba(0,0,0,0);
+    border: 10px solid #FFD70080;
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 100%;
+/*     box-shadow: 0 0 25px #2187e7; */
     width: 100%;
     height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    animation: spin-clockwise 3s infinite linear;
 }
- .blog-card .details, .blog-card .details ul {
-	 margin: auto;
-	 padding: 0;
-	 list-style: none;
+
+.ball1 {
+    background-color: rgba(0,0,0,0);
+    border: 7px solid #FFD700;
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 100%;
+/*     box-shadow: 0 0 15px #2187e7; */
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    animation: spin-counterclockwise 3.2s infinite linear;
 }
- .blog-card .details {
-	 position: absolute;
-	 top: 0;
-	 bottom: 0;
-	 left: -100%;
-	 margin: auto;
-	 transition: left 0.2s;
-	 background: rgba(0, 0, 0, .6);
-	 color: #fff;
-	 padding: 10px;
-	 width: 100%;
-	 font-size: 0.9rem;
+
+.ball2 {
+  margin: 0 auto;
+  position: relative;
+  top: -290px;
+  background-color: #e5e4e22e;
+  background-image: url("https://image.flaticon.com/icons/svg/744/744104.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 100%;
+  box-shadow: 0 0 10px #FFD700;
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  animation: spin-clockwise 3.8s infinite linear;
 }
- .blog-card .details a {
-	 text-decoration: dotted underline;
+
+@keyframes spin-clockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    };
 }
- .blog-card .details ul li {
-	 display: inline-block;
-}
- .blog-card .details .author:before {
-	 font-family: FontAwesome;
-	 margin-right: 10px;
-	 content:'';
-}
- .blog-card .details .date:before {
-	 font-family: FontAwesome;
-	 margin-right: 10px;
-	 content: '';
-}
- .blog-card .details .tags ul:before {
-	 font-family: FontAwesome;
-	 content: '';
-	 margin-right: 10px;
-}
- .blog-card .details .tags li {
-	 margin-right: 2px;
-}
- .blog-card .details .tags li:first-child {
-	 margin-left: -4px;
-}
- .blog-card .description {
-	 padding: 1rem;
-	 background: #fff;
-	 position: relative;
-	 z-index: 1;
-}
-.blog-card .description h1{
-  font-family: 'Audiowide', cursive;
-}
-.blog-card .description h2 {
-	 font-family: Poppins, sans-serif;
-}
- .blog-card .description h1 {
-	 line-height: 1;
-	 margin: 0;
-	 font-size: 1.7rem;
-}
- .blog-card .description h2 {
-	 font-size: .7rem;
-	 font-weight: 300;
-	 text-transform: uppercase;
-	 color: #a2a2a2;
-	 margin-top: 5px;
-}
- .blog-card .description .read-more {
-	 text-align: left;
-}
- .blog-card .description .read-more a {
-	 color: #FFD700;
-	 display: inline-block;
-	 position: relative;
-}
- .blog-card .description .read-more a:after {
-	 content: '';
-	 font-family: FontAwesome;
-	 margin-left: -10px;
-	 opacity: 0;
-	 vertical-align: middle;
-	 transition: margin 0.3s, opacity 0.3s;
-}
- .blog-card .description .read-more a:hover:after {
-	 margin-left: 5px;
-	 opacity: 1;
-}
- .blog-card p {
-	 position: relative;
-	 margin: 1rem 0 0;
-}
- .blog-card p:first-of-type {
-	 margin-top: 1.25rem;
-}
- .blog-card p:first-of-type:before {
-  content: '';
-	 position: absolute;
-	 height: 5px;
-	 background: #FFD700;
-	 width: 50px;
-	 top: -0.75rem;
-	 border-radius: 3px;
-}
- .blog-card:hover .details {
-	 left: 0%;
-}
- @media (min-width: 640px) {
-	 .blog-card {
-		 flex-direction: row;
-		 max-width: 700px;
-	}
-	 .blog-card .meta {
-		 flex-basis: 40%;
-		 height: auto;
-	}
-	 .blog-card .description {
-		 flex-basis: 60%;
-	}
-	 .blog-card .description:before {
-		 transform: skewX(-3deg);
-     content: '';
-		 background: #fff;
-		 width: 30px;
-		 position: absolute;
-		 left: -10px;
-		 top: 0;
-		 bottom: 0;
-		 z-index: -1;
-	}
-	 .blog-card.alt {
-		 flex-direction: row-reverse;
-	}
-	 .blog-card.alt .description:before {
-		 left: inherit;
-		 right: -10px;
-		 transform: skew(3deg);
-	}
-	 .blog-card.alt .details {
-		 padding-left: 25px;
-	}
+
+@keyframes spin-counterclockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    };
 }
 
 </style>

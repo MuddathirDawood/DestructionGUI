@@ -25,5 +25,11 @@ export default {
 </script>
 
 <style>
+.modal{
+  background: rgba(0, 0, 0, 0.6);
+}
 
+.modal-content{
+  background: #E5E4E2;
+}
 </style>

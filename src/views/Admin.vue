@@ -17,8 +17,8 @@
     <td class="table_content" data-heading="Image"><img :src="weapon.image" alt=""></td>
     <td class="table_content" data-heading="EraID">{{weapon.eraID}}</td>
     <td class="table_content" data-heading="ADD" data-bs-toggle="modal" data-bs-target="#AddWeapon">
-        <button class="functionDelete mb-1 p-1"  data-bs-toggle="modal" data-bs-target="#EditWeapon"><ion-icon name="trash-outline"></ion-icon></button>
-        <button class="functionEdit mt-1 p-1" data-bs-toggle="modal" data-bs-target="#EditWeapon"><ion-icon name="create-outline"></ion-icon></button>
+        <button class="functionDelete m-1 p-1"  data-bs-toggle="modal" data-bs-target="#EditWeapon"><ion-icon name="trash-outline"></ion-icon></button>
+        <button class="functionEdit m-1 p-1" data-bs-toggle="modal" data-bs-target="#EditWeapon"><ion-icon name="create-outline"></ion-icon></button>
     </td>
   </tr>
 </table>
@@ -54,7 +54,7 @@ export default {
 }
 
 .container{
-    background: url(https://i.postimg.cc/2ynsYVps/minimal-abstract-light-silver-gold-background-105940-795.jpg) no-repeat center center/cover;    
+    background: #E5E4E2;    
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -128,10 +128,12 @@ td { font-family: 'Avenir Next', 'Segoe UI', 'Lucida Grande', sans-serif; }
   width: 100%;
   padding: 16px;
   padding: 1rem;
+  margin-bottom: 50px;
 }
 
 .table_content{
     color: black;
+    border-bottom: 1px solid black;
 }
 
 .table_heading { 
@@ -146,6 +148,7 @@ td { font-family: 'Avenir Next', 'Segoe UI', 'Lucida Grande', sans-serif; }
      .table_content {
      display: block;
      padding: .5rem 0;
+     border: 0;
     }
      .table_row {
      margin: .25rem 1rem;
@@ -165,6 +168,7 @@ td { font-family: 'Avenir Next', 'Segoe UI', 'Lucida Grande', sans-serif; }
      text-transform: uppercase;
      letter-spacing: 2px;
     }
+
 }
 
 h1, h4 {

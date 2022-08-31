@@ -93,6 +93,10 @@ export default {
   border-radius: 0;
 }
 
+.btn{
+    border: 0 !important;
+}
+
 /* INPUTS */
 .input-group {
  position: relative;

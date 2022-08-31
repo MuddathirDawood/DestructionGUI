@@ -51,7 +51,7 @@
 
 <!-- OFFCANVAS MENU -->
 <MenuBar :eras="eras" :user="user"/>
-<Favourites :eras="eras" :user="user"/>
+<Favourites :eras="eras" :user="user" :favs="favourites"/>
 <Account :user="user"/>
 
   </nav>
@@ -73,6 +73,9 @@ export default {
       },
       user(){
         return this.$store.state.user
+      },
+      favourites(){
+        return this.$store.state.favourites
       }
     },
     methods:{

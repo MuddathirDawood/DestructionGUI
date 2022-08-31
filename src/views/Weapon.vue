@@ -11,7 +11,7 @@
             <a onclick="history.back(-1)" class="buttons">Back</a>
             <a class="buttons">Contact For More Information</a>
         </div>
-            <a id="fav"><ion-icon name="bookmark-outline"></ion-icon></a>
+            <a id="fav" @click="addFav"><ion-icon name="bookmark-outline"></ion-icon></a>
     </div>
   </div>
 </template>
@@ -25,6 +25,13 @@ export default {
     computed:{
         weapon(){
             return this.$store.state.weapon
+        }
+    },
+    methods:{
+        addFav(){
+            const payload = {
+                
+            }
         }
     }
 
@@ -112,25 +119,41 @@ p{
     transition: all 1s;
 }
 
-#fav{
-    margin-top: 30px;
-    background: #E5E4E2;
-    padding: 5px;
-    border-radius: 100%;
-    box-shadow: 0 3px 1px #E5E4E2;
-    border: 1px solid #949393;
-    transition: all .7s;
+#fav {
+margin-top: 15px;
+ display: inline-block;
+ position: relative;
+ color: #fff;
+ font-weight: 500;
+ font-size: 14px;
+ text-decoration: none;
+ text-transform: uppercase;
+ padding: 5px;
+ width: 50px;
+ text-align: center;
+ border: none;
+ clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
+ background-color: #000000;
+ background-image: radial-gradient(200% 70% at center 20%, rgba(48,44,45,1) -30%, #FFD700 49%, #E5E4E2 50%, rgba(22,18,19,1) 150%);
+ background-repeat: no-repeat;
+ transition: background-position-y ease-in-out 250ms;
+}
+
+#fav:hover {
+ background-position-y: -50px;
+}
+
+#fav:active {
+ transform: scale(0.99);
 }
 
 ion-icon{
-    font-size: 40px;
-    color: #FFD700;
+    font-size: 30px;
+    color: black;
 }
 
-#fav:hover{
-    background: #949393;
-    box-shadow: 0 1px 1px #E5E4E2;
-    transition: all .7s;
+ion-icon:hover{
+    color: #FFD700;
 }
 
 </style>

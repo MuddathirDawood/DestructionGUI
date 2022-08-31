@@ -11,7 +11,7 @@
       <h4>Phone Number:</h4><p id="numbers">{{user.phone_number}}</p>
       <h4>Date Joined:</h4><p id="numbers">{{user.dateJoined.slice(0,10)}}</p>
       <p id="change" data-bs-toggle="modal" data-bs-target="#ChangePassword">Change Password?</p>
-      <button id="logout" @click="logout" data-bs-dismiss="offcanvas"><router-link to="/">Logout</router-link></button>
+      <router-link to="/"><button id="logout" @click="logout" data-bs-dismiss="offcanvas">Logout</button></router-link>
   </div>
 </div>
 

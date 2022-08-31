@@ -4,15 +4,17 @@
     <button type="button" data-bs-dismiss="offcanvas" id="menubtn"><ion-icon name="grid-outline"></ion-icon></button>
     <h4 class="offcanvas-title" id="favsLabel">Destruction Favourites</h4>
   </div>
-  <div class="offcanvas-body">
-
+  <div class="offcanvas-body" v-if="favs">
+    <div v-for="fav in favs" :key="fav">
+      <h4>{{fav.name}}</h4>
+    </div>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-    props: ['eras', 'user'],
+    props: ['eras', 'user', 'favs'],
 }
 </script>
 
@@ -50,37 +52,7 @@ export default {
 .offcanvas h4{
   margin-left: 15px;
   font-family: 'Audiowide', cursive;
-}
-
-.offcanvas-body div{
-  padding: 10px;
-  font-family: FontAwesome;
-  font-size: 21px;
-}
-
-.accordion-item button{
-  font-family: FontAwesome;
-  font-size: 21px;
-}
-
-.list>a{
-  text-decoration: none;
-  font-family: 'Destruction';
-  margin: 0;
-  color: #FFD700;
-  text-transform: uppercase;
-  font-size: 18px;
-  letter-spacing: .5px;
-  transition: all .4s;
-}
-
-.list>a:hover{
-    letter-spacing: 1.5px;
-}
-
-.accordion-item li{
-    list-style: none;
-    border-bottom: 1px solid white;
+  color: white;
 }
 
 #menubtn{

@@ -10,7 +10,8 @@ export default createStore({
     weaponsEra: null,
     user: null,
     token: null,
-    weapons: null
+    weapons: null,
+    favourites: null
   },
   getters: {
   },
@@ -38,7 +39,10 @@ export default createStore({
     },
     setWeapons(context, weapons){
       context.weapons = weapons;
-    },                    
+    },
+    setFavourites(context, favs){
+      context.favourites = favs
+    }                    
   },
   actions: {
     async getEra(context, id){
@@ -136,6 +140,7 @@ export default createStore({
             })
             context.commit('setUser',data.user[0])
             context.commit('setToken',data.token)
+            context.dispatch('getFavourites', data.user[0].userID)
             // context.dispatch('getUserFavs')
               router.push('/')
           }
@@ -168,6 +173,37 @@ export default createStore({
           text: `${data.msg}`,
           button: 'OK'
         })
+      })
+    },
+    async getFavourites(context, id){
+      let fetched = await fetch('https://destructionapi.herokuapp.com/users/' + id + '/fav')
+      let res = await fetched.json();
+      context.commit('setFavourites', res.favourites)
+    },
+    addFavourite(context, payload){
+      fetch('https://destructionapi.herokuapp.com/users/' + context.state.user.userID + '/fav', {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.results === 'There is no user with that id') {
+          swal({
+            icon: 'error',
+            title: 'No User Found',
+            buttons: 'OK'
+          })
+        } else {
+          swal({
+            icon: 'success',
+            title: 'Added',
+            text: `The item ${context.state.weapon.name} has been favourited successfully`,
+            buttons: 'Cool'
+          })
+        }
       })
     }                     
   },

@@ -6,10 +6,10 @@
     <h1 class="mb-4">Weapons from this era:</h1>
     <div v-if="eraweapons" class="weapons">
         <div class="card" v-for="weapon in eraweapons" :key="weapon">
-                <img :src="weapon.image" alt="Weapon Image" class="img-fluid">
-                <div class="content p-1">
-                    <h5>{{weapon.name}}</h5>
-                </div>    
+        <div class="card-details">
+            <img :src="weapon.image" alt="" class="img-fluid">
+        </div>
+        <button class="card-button">{{weapon.name}}</button>
         </div>
     </div>
   </div>
@@ -76,8 +76,8 @@ h1{
 img{
     width: 275px; 
     height: 280px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 20px;
+
 }
 
 .weapons{
@@ -88,24 +88,56 @@ img{
     margin-bottom: 15px;
 }
 
-.card{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
-    background: #e5e4e289;
-    border: #FFD700 1px solid;
+/* From uiverse.io by @alexruix */
+.card {
+ width: 250px;
+ height: auto;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
 }
 
-.content{
-    position: relative;
-    color: black;
-    text-align: center;
-    z-index: 5;
-    width: 100%;
-    font-family: 'Destruction';
-    color: #FFD700;
-    border-top: 2px solid black;
+.card-details {
+ color: black;
+ /* height: 100%; */
+ width: 100%;
+ gap: .5em;
+ display: grid;
+ place-content: center;
+}
+
+.card-button {
+ transform: translate(-50%, 125%);
+ width: 90%;
+ border-radius: 1rem;
+ border: none;
+ background-color: #FFD700;
+ color: black;
+ font-size: 1rem;
+ padding: .5rem 1rem;
+ font-family: 'Destruction';
+ position: absolute;
+ left: 50%;
+ bottom: 0;
+ opacity: 0;
+ transition: 0.3s ease-out;
+}
+
+.text-body {
+ color: rgb(134, 134, 134);
+}
+
+.card:hover {
+ border-color: #FFD700;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+ transform: translate(-50%, 50%);
+ opacity: 1;
 }
 
 /* LOADING BAR */

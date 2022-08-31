@@ -5,14 +5,29 @@
     <h4 class="offcanvas-title" id="favsLabel">{{user.username}}'s Account Details</h4>
   </div>
   <div class="offcanvas-body">
-
+      <img :src="user.profilePic" alt="Profile Picture" class="mb-4">
+      <h4>Username:</h4><p>{{user.username}}</p>
+      <h4>Email Address:</h4><p>{{user.emailAddress}}</p>
+      <h4>Phone Number:</h4><p id="numbers">{{user.phone_number}}</p>
+      <h4>Date Joined:</h4><p id="numbers">{{user.dateJoined.slice(0,10)}}</p>
+      <p id="change" data-bs-toggle="modal" data-bs-target="#ChangePassword">Change Password?</p>
+      <button id="logout" @click="logout" data-bs-dismiss="offcanvas"><router-link to="/">Logout</router-link></button>
   </div>
 </div>
+
+<ChangePassword :user="user"/>
 </template>
 
 <script>
+import ChangePassword from './ChangePassword.vue'
 export default {
+  components: { ChangePassword },
     props: ['user'],
+  methods:{
+    logout(){
+      return (this.$store.state.user = null)
+    }
+  }
 }
 </script>
 
@@ -52,38 +67,79 @@ export default {
   margin-left: 15px;
 }
 
-.offcanvas-body div{
+.offcanvas-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px;
-  font-family: FontAwesome;
-  font-size: 21px;
 }
 
-.accordion-item button{
-  font-family: FontAwesome;
-  font-size: 21px;
+.offcanvas-body img{
+  width: 220px;
+  height: 220px;
+  border-radius: 500px;
 }
 
-.list>a{
-  text-decoration: none;
-  font-family: 'Destruction';
+.offcanvas-body h4{
+  font-family: 'Audiowide', cursive;
   margin: 0;
-  color: #FFD700;
-  text-transform: uppercase;
+  width: 100%;
+  text-align: start;
+}
+
+.offcanvas-body p{
+  font-family: 'Destruction';
+  width: 100%;
+  text-align: center;
   font-size: 18px;
-  letter-spacing: .5px;
-  transition: all .4s;
 }
 
-.list>a:hover{
-    letter-spacing: 1.5px;
-}
-
-.accordion-item li{
-    list-style: none;
-    border-bottom: 1px solid white;
+#numbers{
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #menubtn{
     display: block !important;
   }
+
+#change{
+  color: #FFD700;
+}  
+
+/* BUTTON */
+#logout {
+ display: inline-block;
+ position: relative;
+ color: #fff;
+ font-weight: 500;
+ font-size: 14px;
+ text-decoration: none;
+ text-transform: uppercase;
+ padding: 15px 30px;
+ text-align: center;
+ border: none;
+ clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
+ background-color: #E5E4E2;
+ background-image: radial-gradient(200% 70% at center 20%, rgba(48,44,45,1) -30%, rgba(50,46,47,1) 49%, #FFD700 50%, rgba(22,18,19,1) 150%);
+ background-repeat: no-repeat;
+ transition: background-position-y ease-in-out 250ms;
+}
+
+#logout a{
+  text-decoration: none;
+  color: white;
+}
+
+#logout a:hover{
+  color: black;
+}
+
+#logout:hover {
+ background-position-y: -50px;
+ color: black;
+}
+
+#logout:active {
+ transform: scale(0.99);
+}
 </style>

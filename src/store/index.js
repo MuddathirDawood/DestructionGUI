@@ -137,15 +137,39 @@ export default createStore({
             context.commit('setUser',data.user[0])
             context.commit('setToken',data.token)
             // context.dispatch('getUserFavs')
-            setTimeout(()=>{
-              router.push('/'), 5000
-            })
+              router.push('/')
           }
         }
 
       });
 
-    },                     
+    },
+    changePassword(context, payload){
+      const { password } = payload
+      const details = context.state.user
+      fetch('https://destructionapi.herokuapp.com/users/' + details.userID, {
+        method: 'PUT',
+        body: JSON.stringify({
+              username: details.username,
+              emailAddress: details.emailAddress,
+              phone_number: details.phone_number,
+              password: password,
+              profilePic: details.profilePic
+        }),
+        headers:{
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((res)=> res.json())
+      .then((data) => {
+        swal({
+          icon: 'success',
+          title: 'Success',
+          text: `${data.msg}`,
+          button: 'OK'
+        })
+      })
+    }                     
   },
   modules: {
   }

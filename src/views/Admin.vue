@@ -47,6 +47,15 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@font-face {
+    font-family: 'Destruction';
+    src: url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff2') format('woff2'),
+         url('../assets/fonts/gravediggerpersonaluse-k7ayw-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -139,6 +148,7 @@ td { font-family: 'Avenir Next', 'Segoe UI', 'Lucida Grande', sans-serif; }
 .table_heading { 
     border-bottom: 2px solid #FFC842;
     color: black;
+    font-family: 'Audiowide', cursive;
 }
 
  @media (max-width: 32rem) {

@@ -65,6 +65,7 @@ export default {
     align-items: center;
     min-width: 100vw;
     min-height: 100vh;
+    padding: 10px;
 }
 
 h1{
@@ -74,7 +75,8 @@ h1{
 
 h3{
     font-family: 'Destruction';
-    font-size: 25px;
+    color: black;
+    font-size: 27px;
 }
 
 form{

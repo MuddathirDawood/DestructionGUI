@@ -49,6 +49,12 @@ export default {
                 }
 
                 this.$store.dispatch('register', payload)
+                this.username = '';
+                this.emailAddress = '';
+                this.phone_number = '';
+                this.password = '';
+                this.conpassword = '';
+                this.profilePic = '';
 
             } else {
                 swal({
@@ -57,6 +63,12 @@ export default {
                 button: "Try Again"
                 })
                 this.click = false
+                this.username = '';
+                this.emailAddress = '';
+                this.phone_number = '';
+                this.password = '';
+                this.conpassword = '';
+                this.profilePic = '';
             }
 
         }

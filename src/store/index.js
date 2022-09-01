@@ -200,10 +200,39 @@ export default createStore({
           swal({
             icon: 'success',
             title: 'Added',
-            text: `The item ${context.state.weapon.name} has been favourited successfully`,
+            text: `The item ${context.state.weapon[0].name} has been favourited successfully`,
             buttons: 'Cool'
           })
+          context.dispatch('getFavourites', context.state.user.userID)
         }
+      })
+    },
+    clearFavourites(context ,id){
+      fetch('https://destructionapi.herokuapp.com/users/' + id + '/fav', {
+        method: 'DELETE'
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        swal({
+          icon: 'success',
+          title: 'Favourites Cleared'
+        })
+        context.dispatch('getFavourites', id)
+      })
+    },
+    deleteFavourite(context, favouriteid){
+      const user = context.state.user.userID
+      fetch('https://destructionapi.herokuapp.com/users/' + user + '/fav/'+ favouriteid, {
+        method: 'DELETE'
+      })
+      .then((res) => res.json())
+      .then((data)=> {
+        swal({
+          icon: 'success',
+          title: 'Deleted',
+          buttons: 'OK'
+        })
+        context.dispatch('getFavourites', user)
       })
     }                     
   },

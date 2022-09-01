@@ -17,7 +17,6 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" @click="change">Save Changes</button>
       </div>
     </div>
@@ -54,6 +53,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 .modal{
   background: rgba(0, 0, 0, 0.6);
 }
@@ -93,8 +94,20 @@ export default {
   border-radius: 0;
 }
 
+.modal-header{
+    border-bottom: 1px solid black;
+}
+
+.modal-footer{
+    border-top: 1px solid black;
+}
+
 .btn{
     border: 0 !important;
+}
+
+h5{
+  font-family: 'Audiowide', cursive;
 }
 
 /* INPUTS */

@@ -99,7 +99,7 @@ export default {
   margin: 0 auto;
   position: relative;
   top: -290px;
-  background-color: #e5e4e22e;
+  background-color: transparent;
   background-image: url("https://image.flaticon.com/icons/svg/744/744104.svg");
   background-repeat: no-repeat;
   background-size: cover;

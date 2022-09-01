@@ -88,7 +88,7 @@ img{
     margin-bottom: 15px;
 }
 
-/* From uiverse.io by @alexruix */
+/* CARDS */
 .card {
  width: 250px;
  height: auto;

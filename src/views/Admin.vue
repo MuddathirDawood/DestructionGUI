@@ -10,7 +10,7 @@
     <th class="table_heading">EraID</th>
     <th class="table_heading"><button class="functionAdd p-1" data-bs-toggle="modal" data-bs-target="#AddWeapon"><ion-icon name="add-circle-outline"></ion-icon></button></th>
   </tr>
-  <tr class="table_row" v-for="weapon in weapons" :key="weapon">
+  <tr class="table_row" v-for="weapon in weapons" :key="weapon" :weapon="weapon">
     <td class="table_content" data-heading="ID">{{weapon.weapon_id}}</td>
     <td class="table_content" data-heading="Name">{{weapon.name}}</td>
     <td class="table_content" data-heading="Desc.">{{weapon.description}}</td>
@@ -18,15 +18,15 @@
     <td class="table_content" data-heading="EraID">{{weapon.eraID}}</td>
     <td class="table_content" data-heading="ADD" data-bs-toggle="modal" data-bs-target="#AddWeapon">
         <button class="functionDelete m-1 p-1"  data-bs-toggle="modal" data-bs-target="#EditWeapon"><ion-icon name="trash-outline"></ion-icon></button>
-        <button class="functionEdit m-1 p-1" data-bs-toggle="modal" data-bs-target="#EditWeapon"><ion-icon name="create-outline"></ion-icon></button>
+        <button class="functionEdit m-1 p-1" data-bs-toggle="modal" :data-bs-target="`#editWeapon`+ weapon.weapon_id"><ion-icon name="create-outline"></ion-icon></button>
     </td>
+    <AddWeaponModal/>
+    <EditWeaponModal :weapon="weapon"/>
   </tr>
 </table>
 </div>
 
 <!-- MODALS -->
-<AddWeaponModal/>
-<EditWeaponModal/>
 </template>
 
 <script>

@@ -8,7 +8,7 @@
                         <ion-icon name="map-outline"></ion-icon>
                         <div class="cta-text">
                             <h4>Find Me</h4>
-                            <span>Bolton Rd, Mitchell's Plain, Cape Town</span>
+                            <span>Mitchell's Plain,Cape Town</span>
                         </div>
                     </div>
                 </div>

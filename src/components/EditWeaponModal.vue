@@ -15,7 +15,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save Changes</button>
+        <button type="button" class="btn btn-primary" @click="edit(weapon.weapon_id)" data-bs-dismiss="modal">Save Changes</button>
       </div>
     </div>
   </div>
@@ -24,7 +24,18 @@
 
 <script>
 export default {
-  props: ['weapon']
+  props: ['weapon'],
+  methods:{
+    edit(){
+      const payload = {
+        id: this.weapon.weapon_id,
+        name: this.weapon.name,
+        description: this.weapon.description,
+        image: this.weapon.image
+      }
+      this.$store.dispatch('editWeapon', payload)
+    }
+  }
 }
 </script>
 

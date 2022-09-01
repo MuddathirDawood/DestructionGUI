@@ -234,6 +234,29 @@ export default createStore({
         })
         context.dispatch('getFavourites', user)
       })
+    },
+    editWeapon(context, payload){
+      const { id , name , description , image } = payload
+      fetch('https://destructionapi.herokuapp.com/weapons/' + id, {
+        method: 'PUT',
+        body: JSON.stringify({
+          name: name,
+          description: description,
+          image: image
+        }),
+        headers:{
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((res)=> res.json())
+      .then((data)=> {
+        swal({
+          icon: 'success',
+          title: 'Edited',
+          buttons: 'OK'
+        })
+        context.dispatch('getWeapons')
+      })
     }                     
   },
   modules: {

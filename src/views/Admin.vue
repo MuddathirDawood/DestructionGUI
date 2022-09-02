@@ -17,10 +17,10 @@
     <td class="table_content" data-heading="Image"><img :src="weapon.image" alt=""></td>
     <td class="table_content" data-heading="EraID">{{weapon.eraID}}</td>
     <td class="table_content" data-heading="ADD" data-bs-toggle="modal" data-bs-target="#addweapon">
-        <button class="functionDelete m-1 p-1"  data-bs-toggle="modal" data-bs-target="#deleteweapon"><ion-icon name="trash-outline"></ion-icon></button>
+        <button class="functionDelete m-1 p-1"  data-bs-toggle="modal" :data-bs-target="`#deleteweapon`+ weapon.weapon_id"><ion-icon name="trash-outline"></ion-icon></button>
         <button class="functionEdit m-1 p-1" data-bs-toggle="modal" :data-bs-target="`#editWeapon`+ weapon.weapon_id"><ion-icon name="create-outline"></ion-icon></button>
     </td>
-    <DeleteWeaponModal/>
+    <DeleteWeaponModal :weapon="weapon"/>
     <AddWeaponModal/>
     <EditWeaponModal :weapon="weapon"/>
   </tr>

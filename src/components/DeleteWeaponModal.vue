@@ -1,16 +1,16 @@
 <template>
-  <div class="modal fade" id="deleteweapon" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal fade" :id="`deleteweapon`+ weapon.weapon_id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ChangePasswordLabel">Change Password</h5>
+        <h5 class="modal-title" id="deleteweaponLabel">Change Password</h5>
         <button type="button" data-bs-dismiss="modal" id="exit"><ion-icon name="exit-outline"></ion-icon></button>
       </div>
       <div class="modal-body">
-            <h3>Are you sure you want to delete this weapon?</h3>
+            <h5 id="sentence">Are you sure you want to delete <span>{{weapon.name}}</span> from the database?</h5>
       </div>
       <div class="modal-footer">
-        <button class="noselect" id="clear" @click="clear"><span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span>
+        <button class="noselect" id="clear" @click="deleteW(weapon.weapon_id)" data-bs-dismiss="modal"><span class="text">Yes</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span>
         </button>      
       </div>
     </div>
@@ -21,7 +21,12 @@
 <script>
 import swal from 'sweetalert'
 export default {
-
+    props: ['weapon'],
+    methods:{
+        deleteW(id){
+            this.$store.dispatch('deleteWeapon', id)
+        }
+    }
 }
 </script>
 
@@ -62,9 +67,21 @@ export default {
     align-items: center;
 }
 
+.modal-body{
+  font-family: monospace;
+}
+
+.modal-body span{
+    font-family: 'Audiowide', cursive;
+}
+
 .modal-content{
   background: #E5E4E2;
   border-radius: 0;
+}
+
+#sentence{
+    font-family: monospace;
 }
 
 .modal-header{
@@ -79,7 +96,7 @@ export default {
     border: 0 !important;
 }
 
-h5{
+#deleteweaponLabel{
   font-family: 'Audiowide', cursive;
 }
 

@@ -118,7 +118,7 @@ img{
  color: black;
  font-size: 1rem;
  padding: .5rem 1rem;
- font-family: 'Destruction';
+ font-family: 'Audiowide', cursive;
  position: absolute;
  left: 50%;
  bottom: 0;

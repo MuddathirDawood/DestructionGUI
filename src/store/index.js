@@ -275,6 +275,20 @@ export default createStore({
         })
         context.dispatch('getWeapons')
       })
+    },
+    deleteWeapon(context, id){
+      fetch('https://destructionapi.herokuapp.com/weapons/' + id, {
+        method: 'DELETE'
+      })
+      .then((res)=> res.json())
+      .then((data)=>{
+        swal({
+          icon: 'success',
+          title: 'Weapon Deleted',
+          timer: 1000
+        })
+        context.dispatch('getWeapons')
+      })
     }                     
   },
   modules: {

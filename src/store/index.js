@@ -230,7 +230,7 @@ export default createStore({
         swal({
           icon: 'success',
           title: 'Deleted',
-          buttons: 'OK'
+          timer: 1000
         })
         context.dispatch('getFavourites', user)
       })
@@ -254,6 +254,24 @@ export default createStore({
           icon: 'success',
           title: 'Edited',
           buttons: 'OK'
+        })
+        context.dispatch('getWeapons')
+      })
+    },
+    addWeapon(context, payload){
+      fetch('https://destructionapi.herokuapp.com/weapons', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers:{
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((res)=> res.json())
+      .then((data)=>{
+        swal({
+          icon: 'success',
+          title: 'Weapon added',
+          timer: 1000
         })
         context.dispatch('getWeapons')
       })

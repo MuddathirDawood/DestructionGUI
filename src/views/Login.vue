@@ -157,18 +157,18 @@ input[type=email]:focus{
 
 .ball1 {
     background-color: rgba(0,0,0,0);
-    border: 7px solid #ffd900ac;
+    border: 5px solid #ffd900ac;
     opacity: .9;
     border-top: 5px solid rgba(0,0,0,0);
     border-left: 5px solid rgba(0,0,0,0);
     border-radius: 100%;
 /*     box-shadow: 0 0 15px #2187e7; */
-    width: 60%;
-    height: 60%;
+    width: 30%;
+    height: 30%;
     margin: 0 auto;
     position: absolute;
-    top: 20%;
-    left: 20%;
+    top: 25%;
+    left: 25%;
     animation: spin-counterclockwise 3.2s infinite linear;
 }
 
@@ -176,14 +176,14 @@ input[type=email]:focus{
   margin: 0 auto;
   position: relative;
   top: -290px;
-  background-color: #5e5e5e2e;
+  background-color: transparent;
   background-image: url("https://image.flaticon.com/icons/svg/744/744104.svg");
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 100%;
   box-shadow: 0 0 10px #FFD700;
-  width: 30%;
-  height: 30%;
+  width: 10%;
+  height: 10%;
   position: absolute;
   top: 35%;
   left: 35%;

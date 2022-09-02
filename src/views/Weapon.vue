@@ -11,7 +11,7 @@
             <a onclick="history.back(-1)" class="buttons">Back</a>
             <a class="buttons" data-bs-toggle="modal" data-bs-target="#contact">Contact For More Information</a>
         </div>
-        <button aria-label="Favourite" id="fav" @click="addFav">
+        <button id="fav" @click="addFav">
             <svg width="515.99" height="480.73" version="1.1" viewBox="0 0 515.99347 480.73038" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
             <metadata>
             <rdf:RDF>

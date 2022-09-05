@@ -21,7 +21,7 @@
           <label class="user-label">Email Address</label>
         </div>
         <div class="input-group my-2">
-          <input required type="number" name="phone_num" autocomplete="off" class="input" v-model="user.phone_number">
+          <input required type="text" name="phone_num" autocomplete="off" class="input" v-model="user.phone_number">
           <label class="user-label">Phone Number</label>
         </div>                             
       </div>

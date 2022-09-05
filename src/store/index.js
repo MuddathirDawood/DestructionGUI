@@ -1,3 +1,4 @@
+import router from '@/router';
 import swal from 'sweetalert';
 import { createStore } from 'vuex'
 
@@ -12,7 +13,8 @@ export default createStore({
     token: null,
     weapons: null,
     favourites: null,
-    login: null
+    login: null,
+    users: null
   },
   getters: {
   },
@@ -46,7 +48,10 @@ export default createStore({
     },
     setLogin(context, login){
       context.login = login
-    }                         
+    },
+    setUsers(context, users){
+      context.users = users
+    }                                   
   },
   actions: {
     async getEra(context, id){
@@ -79,6 +84,11 @@ export default createStore({
       let res = await fetched.json();
       context.commit('setWeapons',res.weapons)
     },
+    async getUsers(context){
+      let fetched = await fetch('https://destructionapi.herokuapp.com/users');
+      let res = await fetched.json();
+      context.commit('setUsers',res.users)
+    },    
     register(context, payload){
       fetch('https://destructionapi.herokuapp.com/users', {
       method: 'POST',
@@ -320,7 +330,22 @@ export default createStore({
         })
         window.location.reload();
       })
-    }                     
+    },
+    deleteUser(context, id){
+      fetch('https://destructionapi.herokuapp.com/users/' + id, {
+        method: 'DELETE'
+      })
+      .then((res)=> res.json())
+      .then((data)=>{
+        swal({
+          icon: 'success',
+          title: 'User Deleted',
+          timer: 1000
+        })
+        router.push('/')
+        context.state.user = null
+      })
+    },                         
   },
   modules: {
   }

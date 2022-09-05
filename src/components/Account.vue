@@ -13,11 +13,13 @@
       <p id="change" data-bs-toggle="modal" data-bs-target="#ChangePassword">Change Password?</p>
       <div id="profButtons">
         <button type="button" id="send" data-bs-toggle="modal" data-bs-target="#ChangeProfile">Change Profile <span></span></button>
+        <button type="button" id="send" data-bs-toggle="modal" data-bs-target="#DeleteProfile" class="mt-2">Delete Profile <span></span></button>
         <router-link to="/"><button type="button" id="send" class="mt-3" @click="logout" data-bs-dismiss="offcanvas">Logout <span></span></button></router-link>
       </div>
   </div>
 </div>
 
+<DeleteProfile :user="user"/>
 <ChangeProfile :user="user"/>
 <ChangePassword :user="user"/>
 </template>
@@ -25,8 +27,9 @@
 <script>
 import ChangePassword from './ChangePassword.vue'
 import ChangeProfile from './ChangeProfile.vue'
+import DeleteProfile from './DeleteProfile.vue'
 export default {
-  components: { ChangePassword, ChangeProfile },
+  components: { ChangePassword, ChangeProfile, DeleteProfile },
     props: ['user'],
   methods:{
     logout(){

@@ -6,7 +6,7 @@
         <div><label for="email">Email Address: </label><input type="email" name="email" v-model="emailAddress"></div>
         <div><label for="password">Password: </label><input type="password" name="password" v-model="password"></div>
         <div><label for="conpassword">Confirm Password: </label><input type="password" name="conpassword" v-model="conpassword"></div>
-        <div><label for="phone">Phone Number: </label><input type="number" name="phone" maxlength="10" v-model="phone_number"></div>
+        <div><label for="phone">Phone Number: </label><input type="text" name="phone" maxlength="10" v-model="phone_number"></div>
         <div><label for="profilePic">Profile Picture: </label><input type="text" name="profile" v-model="profilePic"></div>
      </form>
     <div class="containers" v-if="click && !token">
@@ -32,7 +32,7 @@ export default {
             phone_number: '',
             password:'',
             conpassword:'',
-            profilePic:'',
+            profilePic:'https://i.postimg.cc/pL44BPD4/profile-image.jpg',
             click: false
         }
     },

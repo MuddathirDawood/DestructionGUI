@@ -2,6 +2,7 @@
 <div class="container">
   <h1>Admin</h1>
 <table class="table" v-if="weapons">
+  <h1>Weapons</h1>
   <tr>
     <th class="table_heading">ID</th>
     <th class="table_heading">Name</th>
@@ -25,6 +26,31 @@
     <EditWeaponModal :weapon="weapon"/>
   </tr>
 </table>
+<table class="table" v-if="users" id="users">
+  <h1>Users</h1>
+  <tr>
+    <th class="table_heading">ID</th>
+    <th class="table_heading">Username</th>
+    <th class="table_heading">Email Address</th>
+    <th class="table_heading">Phone Number</th>
+    <th class="table_heading">User Role</th>
+    <th class="table_heading">Profile Pic</th>
+    <th class="table_heading">Date Joined</th>
+    <th class="table_heading">Favourites</th>
+  </tr>
+  <tr class="table_row" v-for="user in users" :key="user" :user="user">
+    <td class="table_content" data-heading="ID">{{user.userID}}</td>
+    <td class="table_content" data-heading="Username">{{user.username}}</td>
+    <td class="table_content" data-heading="Email">{{user.emailAddress}}</td>
+    <td class="table_content" data-heading="Number">{{user.phone_number}}</td>
+    <td class="table_content" data-heading="UserRole">{{user.userRole}}</td>
+    <td class="table_content" data-heading="PFP"><img :src="user.profilePic" alt="Profile Picture"></td>
+    <td class="table_content" data-heading="Date">{{user.dateJoined.slice(0,10)}}</td>
+    <td class="table_content" data-heading="Favourites"><button data-bs-toggle="modal" :data-bs-target="`#FavouriteModal`+ user.userID" @click="favourite(user.userID)">Favourites</button></td>
+
+    <FavouriteModal :user="user"/>
+  </tr>
+</table>
 </div>
 
 <!-- MODALS -->
@@ -34,14 +60,24 @@
 import AddWeaponModal from '@/components/AddWeaponModal.vue'
 import EditWeaponModal from '@/components/EditWeaponModal.vue'
 import DeleteWeaponModal from '@/components/DeleteWeaponModal.vue'
+import FavouriteModal from '@/components/FavouriteModal.vue'
 export default {
-  components: { AddWeaponModal, EditWeaponModal, DeleteWeaponModal },
+  components: { AddWeaponModal, EditWeaponModal, DeleteWeaponModal, FavouriteModal },
   mounted(){
     this.$store.dispatch('getWeapons')
+    this.$store.dispatch('getUsers')
   },
   computed:{
     weapons(){
         return this.$store.state.weapons
+    },
+    users(){
+      return this.$store.state.users
+    }
+  },
+  methods:{
+    favourite(id){
+      return this.$store.dispatch('getFavourites', id)
     }
   }
 
@@ -153,6 +189,10 @@ td { font-family: 'Avenir Next', 'Segoe UI', 'Lucida Grande', sans-serif; }
     font-family: 'Audiowide', cursive;
 }
 
+#users img{
+  border-radius: 20px;
+}
+
  @media (max-width: 32rem) {
      .table_heading {
     display: none;
@@ -172,7 +212,7 @@ td { font-family: 'Avenir Next', 'Segoe UI', 'Lucida Grande', sans-serif; }
      content: attr(data-heading);
      display: inline-block;
      width: 5rem;
-     margin-right: .5rem;
+     margin-right: 1.5rem;
      color: #999;
      font-size: .75rem;
      font-weight: 700;

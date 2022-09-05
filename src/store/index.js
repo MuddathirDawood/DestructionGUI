@@ -11,7 +11,8 @@ export default createStore({
     user: null,
     token: null,
     weapons: null,
-    favourites: null
+    favourites: null,
+    login: null
   },
   getters: {
   },
@@ -42,7 +43,10 @@ export default createStore({
     },
     setFavourites(context, favs){
       context.favourites = favs
-    }                    
+    },
+    setLogin(context, login){
+      context.login = login
+    }                         
   },
   actions: {
     async getEra(context, id){
@@ -141,6 +145,7 @@ export default createStore({
             context.commit('setUser',data.user[0])
             context.commit('setToken',data.token)
             context.dispatch('getFavourites', data.user[0].userID)
+            context.commit('setLogin', payload)
             // context.dispatch('getUserFavs')
               router.push('/')
           }
@@ -288,6 +293,32 @@ export default createStore({
           timer: 1000
         })
         context.dispatch('getWeapons')
+      })
+    },
+    editUser(context, payload){
+      const {id , username , emailAddress , phone_number , profilePic , password} = payload
+      const details = context.state.user
+      fetch('https://destructionapi.herokuapp.com/users/' + id, {
+        method: 'PUT',
+        body: JSON.stringify({
+          username: username,
+          emailAddress: emailAddress,
+          phone_number: phone_number,
+          password: context.state.login.password,
+          profilePic: profilePic
+        }),
+        headers:{
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((res)=> res.json())
+      .then((data)=> {
+        swal({
+          icon: 'success',
+          title: 'Edited',
+          text: `${data.msg}`
+        })
+        window.location.reload();
       })
     }                     
   },

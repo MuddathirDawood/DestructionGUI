@@ -154,7 +154,7 @@ form{
 
 .input {
  border: solid 1.5px #9e9e9e;
- border-radius: 10px;
+ border-radius: 10px !important;
  background: none;
  padding: .6rem;
  width: 100%;

@@ -11,18 +11,18 @@
       <li>Weapons +
         <ul class="drop">
           <div>
-                <li v-for="era in eras" :key="era">
-                  <router-link @click="getWeapons(era.era_id)" :to="{name: 'Weapons', params: {id: era.era_id}}">{{era.era_name}}</router-link>
-                </li>
+                <router-link @click="getWeapons(era.era_id)" :to="{name: 'Weapons', params: {id: era.era_id}}" v-for="era in eras" :key="era">
+                  <li>{{era.era_name}}</li>
+                </router-link>
           </div>
         </ul>
       </li>
       <li>Eras +
           <ul class="drop">
             <div>
-                <li v-for="era in eras" :key="era">
-                  <router-link @click="getEras(era.era_id)" :to="{name: 'Eras', params: {id: era.era_id}}">{{era.era_name}}</router-link>
-                </li>
+                <router-link @click="getEras(era.era_id)" :to="{name: 'Eras', params: {id: era.era_id}}" v-for="era in eras" :key="era">
+                  <li>{{era.era_name}}</li>
+                </router-link>
             </div>
           </ul>
       </li>
@@ -143,10 +143,11 @@ li>a{
   color: #FFD700;
   font-size: 17px;
 }
+
 li{
   margin: 0;
   color: #FFD700;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 .drop {
@@ -185,7 +186,7 @@ li{
   font-size: 18px;
 }
 
-.drop li>a{
+.drop a>li{
   color: black;
   font-size: 15px;
 }

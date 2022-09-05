@@ -1,23 +1,32 @@
 <template>
-  <div class="modal fade" id="ChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal fade" id="ChangeProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" v-if="user">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ChangePasswordLabel">Change Password</h5>
+        <h5 class="modal-title" id="ChangeProfileLabel">Change Profile</h5>
         <button type="button" data-bs-dismiss="modal" id="exit"><ion-icon name="exit-outline"></ion-icon></button>
       </div>
       <div class="modal-body">
         <div class="input-group my-2">
-          <input required type="password" name="newpassword" autocomplete="off" class="input" v-model="newpassword">
-          <label class="user-label">New Password</label>
+          <input required type="text" name="newimage" autocomplete="off" class="input" v-model="user.profilePic">
+          <label class="user-label">New Image</label>
+          <img :src="user.profilePic" alt="New profile pic" class="mt-3">
         </div>
         <div class="input-group my-2">
-          <input required type="password" name="connewpassword" autocomplete="off" class="input" v-model="connewpassword">
-          <label class="user-label">Confirm New Password</label>
+          <input required type="text" name="username" autocomplete="off" class="input" v-model="user.username">
+          <label class="user-label">Username</label>
         </div>
+        <div class="input-group my-2">
+          <input required type="email" name="email" autocomplete="off" class="input" v-model="user.emailAddress">
+          <label class="user-label">Email Address</label>
+        </div>
+        <div class="input-group my-2">
+          <input required type="number" name="phone_num" autocomplete="off" class="input" v-model="user.phone_number">
+          <label class="user-label">Phone Number</label>
+        </div>                             
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click="change">Save Changes</button>
+        <button type="button" class="btn btn-primary" @click="change" data-bs-dismiss="modal, offcanvas" >Save Changes</button>
       </div>
     </div>
   </div>
@@ -28,31 +37,23 @@
 import swal from 'sweetalert'
 export default {
     props: ['user'],
-    data(){
-        return{
-            newpassword: '',
-            connewpassword: ''
-        }
-    },
     methods:{
         change(){
-            if (this.newpassword !== this.connewpassword) {
-                swal({
-                    icon: 'error',
-                    title: 'Your passwords do not match'
-                })
-            } else {
-                const payload = {
-                    password: this.newpassword
-                }
-                this.$store.dispatch('changePassword', payload)
-            }
+          const payload = {
+            id: this.user.userID,
+            username: this.user.username,
+            emailAddress: this.user.emailAddress,
+            phone_number: this.user.phone_number,
+            profilePic: this.user.profilePic,
+            password: this.user.password
+          }
+          this.$store.dispatch('editUser', payload)
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
 .modal{
@@ -113,7 +114,10 @@ h5{
 /* INPUTS */
 .input-group {
  position: relative;
- width: 50%;
+ width: 75%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
 }
 
 .input {
@@ -146,5 +150,11 @@ h5{
  background-color: #E5E4E2;
  padding: 0 .2em;
  color: black;
+}
+
+img{
+  width: 220px;
+  height: 220px;
+  border-radius: 500px !important;
 }
 </style>

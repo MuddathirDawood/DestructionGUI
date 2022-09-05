@@ -39,10 +39,9 @@
         </div>
       </div>
     </div>      
-    <div v-if="user" data-bs-toggle="offcanvas" data-bs-target="#account">
-      Account
+    <div v-if="user" id="accounts">
+        <li data-bs-toggle="offcanvas" data-bs-target="#account">Account</li>
         <li v-if="user.userRole == 'admin'"><router-link to="/admin">Admin</router-link></li>
-
     </div>
     <div v-else id="acc">
     <div>
@@ -142,5 +141,11 @@ export default {
   #menubtn{
     display: block !important;
   }
+}
+
+#accounts li, a{
+  list-style: none;
+  text-decoration: none;
+  color: #E5E4E2;
 }
 </style>

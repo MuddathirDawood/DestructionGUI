@@ -11,17 +11,22 @@
       <h4>Phone Number:</h4><p id="numbers">{{user.phone_number}}</p>
       <h4>Date Joined:</h4><p id="numbers">{{user.dateJoined.slice(0,10)}}</p>
       <p id="change" data-bs-toggle="modal" data-bs-target="#ChangePassword">Change Password?</p>
-      <router-link to="/"><button id="logout" @click="logout" data-bs-dismiss="offcanvas">Logout</button></router-link>
+      <div id="profButtons">
+        <button type="button" id="send" data-bs-toggle="modal" data-bs-target="#ChangeProfile">Change Profile <span></span></button>
+        <router-link to="/"><button type="button" id="send" class="mt-3" @click="logout" data-bs-dismiss="offcanvas">Logout <span></span></button></router-link>
+      </div>
   </div>
 </div>
 
+<ChangeProfile :user="user"/>
 <ChangePassword :user="user"/>
 </template>
 
 <script>
 import ChangePassword from './ChangePassword.vue'
+import ChangeProfile from './ChangeProfile.vue'
 export default {
-  components: { ChangePassword },
+  components: { ChangePassword, ChangeProfile },
     props: ['user'],
   methods:{
     logout(){
@@ -104,42 +109,61 @@ export default {
 
 #change{
   color: #FFD700;
-}  
-
-/* BUTTON */
-#logout {
- display: inline-block;
- position: relative;
- color: #fff;
- font-weight: 500;
- font-size: 14px;
- text-decoration: none;
- text-transform: uppercase;
- padding: 15px 30px;
- text-align: center;
- border: none;
- clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
- background-color: #E5E4E2;
- background-image: radial-gradient(200% 70% at center 20%, rgba(48,44,45,1) -30%, rgba(50,46,47,1) 49%, #FFD700 50%, rgba(22,18,19,1) 150%);
- background-repeat: no-repeat;
- transition: background-position-y ease-in-out 250ms;
 }
 
-#logout a{
+a{
   text-decoration: none;
-  color: white;
 }
 
-#logout a:hover{
-  color: black;
+#send {
+ border: none;
+ display: block;
+ position: relative;
+ padding: 10px 15px 10px 15px;
+ font-size: 15px;
+ background: transparent;
+ overflow: hidden;
+ color: #E5E4E2;
+ font-family: 'Audiowide', cursive;
+ text-transform: uppercase;
+ z-index: 1;
+ font-family: inherit;
+ font-weight: 500;
 }
 
-#logout:hover {
- background-position-y: -50px;
- color: black;
+#send span {
+ position: absolute;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ background: transparent;
+ z-index: -1;
+ border: 3px solid #FFD700;
 }
 
-#logout:active {
- transform: scale(0.99);
+#send span::before {
+ content: "";
+ display: block;
+ position: absolute;
+ width: 8%;
+ height: 500%;
+ background: #171718;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%) rotate(-60deg);
+ transition: all 0.3s;
+}
+
+#send:hover span::before {
+ transform: translate(-50%, -50%) rotate(-90deg);
+ width: 100%;
+ background: #FFD700;
+}
+
+#profButtons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

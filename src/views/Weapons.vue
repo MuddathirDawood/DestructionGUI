@@ -18,6 +18,7 @@ export default {
     props: ['id'],
     mounted(){
         this.$store.dispatch('getWeaponsEra', this.id)
+        this.$store.state.weapon = null
     },
     computed:{
         weaponsEra(){

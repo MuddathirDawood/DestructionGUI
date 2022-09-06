@@ -26,6 +26,7 @@
 export default {
     props: ['id'],
     mounted(){
+        this.$store.state.era = null
         this.$store.dispatch('getEra', this.id)
         this.$store.dispatch('getEraWeapons', this.id)
     },

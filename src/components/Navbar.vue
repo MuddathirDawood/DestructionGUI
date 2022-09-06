@@ -85,7 +85,7 @@ export default {
       },
       getWeapons(id){
         this.$store.dispatch('getWeaponsEra', id)
-      }
+      },
     },
 }
 </script>

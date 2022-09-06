@@ -2,14 +2,16 @@
   <div class="container" v-if="weapon">
     <h1>Weapon</h1>
     <div class="container-card">
-        <img :src="weapon[0].image" alt="Weapon Image">
+        <div id="img">
+            <img :src="weapon[0].image" alt="Weapon Image">
+        </div>
         <h3>{{weapon[0].name}}</h3>
         <h5>{{weapon[0].era_name}}</h5>
         <div id="divider"></div>
         <p>{{weapon[0].description}}</p>
         <div id="buttons">
-            <a onclick="history.back(-1)" class="buttons">Back</a>
-            <a class="buttons" data-bs-toggle="modal" data-bs-target="#contact">Contact For More Information</a>
+            <a onclick="history.back(-1)" class="buttons">Back <span></span></a>
+            <a class="buttons" data-bs-toggle="modal" data-bs-target="#contact">Contact For More Information <span></span></a>
         </div>
         <button id="fav" @click="addFav">
             <svg width="515.99" height="480.73" version="1.1" viewBox="0 0 515.99347 480.73038" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -32,6 +34,14 @@
             </svg>
         </button>
     </div>
+    <button @click="test">Tester</button>
+    <div class="similar" v-if="weapons">
+        <h1>Other Weapons</h1>
+        <div v-for="simweapon in (weapons.filter((weaponsRelate) => {return weaponsRelate.name != weapon[0].name}))
+            .slice(5,3)" :key="simweapon">
+            <h1>{{simweapon.name}}</h1>
+        </div>
+    </div>
   </div>
   <div class="containers" v-else>
     <div class="wrapper">
@@ -52,8 +62,12 @@ export default {
     props: ['id'],
     mounted(){
         this.$store.dispatch('getWeapon', this.id)
+        this.$store.dispatch('getWeapons')
     },
     computed:{
+        weapons(){
+            return this.$store.state.weapons
+        },
         weapon(){
             return this.$store.state.weapon
         },
@@ -80,6 +94,13 @@ export default {
                 document.querySelector('#fav').classList.toggle("liked");
                 console.log('object');              
             }
+        },
+        test(){
+            console.log(
+                (this.weapons.filter((weaponsRelate) => {
+            return weaponsRelate.name != this.weapon[0].name
+            })).slice(5,3)
+            );
         }
     }
 
@@ -107,7 +128,7 @@ export default {
     display: flex;
     flex-flow: column wrap ;
     align-items: center;
-    background: rgba(255, 255, 255, 0.423);
+    background: #ffffff6c;
     padding: 35px;
     width: 50%;
     height: 40%;
@@ -118,9 +139,14 @@ h1{
     color: white;
 }
 
-img{
-    width: 375px;
+#img{
+    width: 80%;
     height: 375px;
+}
+
+#img>img{
+    width: 100%;
+    height: 100%;
 }
 
 #divider{
@@ -149,26 +175,44 @@ p{
 }
 
 #buttons{
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    gap: 50px;
 }
 
-.buttons{
-    border-top: 2px solid #FFD700;
-    border-bottom: 2px solid #FFD700;
-    letter-spacing: 2px;
-    transition: all 1s;
-    text-decoration: none;
-    color: #E5E4E2;
+.buttons {
+ border: none;
+ display: block;
+ position: relative;
+ padding: 10px 15px 10px 18px;
+ font-size: 15px;
+ background: transparent;
+ overflow: hidden;
+ color: black;
+ text-transform: uppercase;
+ z-index: 1;
+ font-family: inherit;
+ font-weight: 500;
+ transition: all .5s;
+}
+
+.buttons span {
+ position: absolute;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ background: transparent;
+ z-index: -1;
+ border: 3px solid #FFD700;
 }
 
 .buttons:hover{
-    letter-spacing: 3px;
-    transition: all 1s;
+    box-shadow: 0 0 8px #FFD700;
+    transition: all .5s;
 }
 
-button {
+#fav {
 	 display: flex;
 	 justify-content: center;
 	 align-items: center;
@@ -184,30 +228,30 @@ button {
 	 cursor: pointer;
 	 transition: all 0.5s ease;
 }
- button:focus {
+ #fav:focus {
 	 outline: none;
 }
- button:hover {
+ #fav:hover {
 	 box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
 }
- button.liked {
+ #fav.liked {
 	 border-color: #ff1919;
 	 animation: shadow-grow 2s;
 }
- button.liked svg {
+ #fav.liked svg {
 	 animation: heart-grow 0.7s;
 }
- button.liked .heart {
+ #fav.liked .heart {
 	 fill: #ff1919;
 }
- button svg {
+ #fav svg {
 	 width: 20px;
 	 height: auto;
 }
- button svg .heart {
+ #fav svg .heart {
 	 fill: rgba(0, 0, 0, 0.45);
 }
- button svg .shine {
+ #fav svg .shine {
 	 fill: #fff;
 }
  @keyframes shadow-grow {
@@ -319,5 +363,53 @@ button {
         transform: rotate(-360deg);
     };
 }
+
+@media (max-width:1000px){
+    .container-card{
+        width: 70%;
+    }
+}
+
+@media (max-width:730px){
+    .container-card{
+        width: 85%;
+    }
+}
+
+@media (max-width:588px){
+    .container-card{
+        width: 95%;
+        padding: 20px;
+    }
+    h3{
+       text-align: center; 
+    }
+    p{
+       margin: 10px; 
+    }
+    #buttons{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .buttons{
+        text-align: center;
+    }
+}
+
+@media (max-width:400px){
+    .container-card{
+        width: 85%;
+    }
+    #img{
+        width: 100%;
+        height: 300px;
+    }
+    #fav{
+        left: 40%;
+        top: -2%;
+    }
+}
+
+
 
 </style>

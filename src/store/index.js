@@ -6,15 +6,15 @@ export default createStore({
   state: {
     era_weapons: null,
     weapon: null,
+    weapons: null,
+    weaponsEra: null,
     era: null,
     eras: null,
-    weaponsEra: null,
     user: null,
-    token: null,
-    weapons: null,
-    favourites: null,
+    users: null,
     login: null,
-    users: null
+    token: null,
+    favourites: null,
   },
   getters: {
   },

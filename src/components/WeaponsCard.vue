@@ -9,7 +9,7 @@
           <h1>{{weapons.name}}</h1>
           <h2>{{weapons.era_name}}</h2>
           <p class="read-more">
-                <router-link :to="{name: 'Weapon', params: {id: weapons.weapon_id}}"><span></span>Details</router-link>
+        		<router-link :to="{name: 'Weapon', params: {id: weapons.weapon_id}}" type="button" id="send">Details <span></span></router-link>
           </p>
         </div>
     </div>
@@ -177,10 +177,56 @@ export default {
  .blog-card:hover .details {
 	 left: 0%;
 }
+
+#send {
+ border: none;
+ display: block;
+ position: relative;
+ padding: 10px 15px 10px 18px;
+ font-size: 15px;
+ background: transparent;
+ overflow: hidden;
+ color: black;
+ text-transform: uppercase;
+ z-index: 1;
+ font-family: inherit;
+ font-weight: 500;
+}
+
+#send span {
+ position: absolute;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ background: transparent;
+ z-index: -1;
+ border: 3px solid #FFD700;
+}
+
+#send span::before {
+ content: "";
+ display: block;
+ position: absolute;
+ width: 8%;
+ height: 500%;
+ background: #E5E4E2;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%) rotate(-60deg);
+ transition: all 0.3s;
+}
+
+#send:hover span::before {
+ transform: translate(-50%, -50%) rotate(-90deg);
+ width: 100%;
+ background: #FFD700;
+}
+
  @media (min-width: 500px) {
 	 .blog-card {
 		 flex-direction: row;
-		 max-width: 700px;
+		 max-width: 75%;
 	}
 	 .blog-card .meta {
 		 flex-basis: 40%;
@@ -210,6 +256,12 @@ export default {
 	}
 	 .blog-card.alt .details {
 		 padding-left: 25px;
+	}
+}
+
+@media (max-width: 500px){
+	.blog-card{
+		height: 335px;
 	}
 }
 </style>

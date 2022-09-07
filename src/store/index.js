@@ -344,6 +344,7 @@ export default createStore({
         })
         router.push('/')
         context.state.user = null
+        window.location.reload()
       })
     },                         
   },

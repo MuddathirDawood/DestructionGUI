@@ -34,13 +34,16 @@
             </svg>
         </button>
     </div>
-    <button @click="test">Tester</button>
+        <h1>Other Weapons <span @click="random">Click here to view more</span></h1>
     <div class="similar" v-if="weapons">
-        <h1>Other Weapons</h1>
-        <div v-for="simweapon in (weapons.filter((weaponsRelate) => {return weaponsRelate.name != weapon[0].name}))
-            .slice(5,3)" :key="simweapon">
-            <h1>{{simweapon.name}}</h1>
-        </div>
+        <router-link :to="{name: 'Weapon', params: {id: simweapon.weapon_id}}" v-for="simweapon in (weapons.filter((weaponsRelate) => {return weaponsRelate.name != weapon[0].name})).slice(start,end)" :key="simweapon">
+            <div class="card">
+                <div class="card-details">
+                    <img :src="simweapon.image" alt="" class="img-fluid">
+                </div>
+                <button class="card-button">{{simweapon.name}}</button>
+            </div>
+        </router-link>
     </div>
   </div>
   <div class="containers" v-else>
@@ -58,6 +61,12 @@
 import swal from 'sweetalert'
 import ContactModal from '@/components/ContactModal.vue'
 export default {
+    data(){
+        return{
+            start: null,
+            end: null
+        }
+    },
   components: { ContactModal },
     props: ['id'],
     mounted(){
@@ -73,6 +82,13 @@ export default {
         },
         user(){
             return this.$store.state.user
+        },
+        random(){
+            let random = Math.floor(Math.random()*(this.weapons.length - 0)+0)-3;
+            this.start = random;
+            this.end = random + 3;
+            console.log(this.start + ',' + this.end);
+
         }
     },
     methods:{
@@ -95,12 +111,12 @@ export default {
                 console.log('object');              
             }
         },
-        test(){
-            console.log(
-                (this.weapons.filter((weaponsRelate) => {
-            return weaponsRelate.name != this.weapon[0].name
-            })).slice(5,3)
-            );
+    },
+    watch:{
+        $route(to,from){
+            this.$store.commit('setWeapon', null)
+            this.$store.dispatch('getWeapon', to.params.id)
+            scrollTo(0,0)
         }
     }
 
@@ -135,8 +151,38 @@ export default {
 }
 
 h1{
+    position: relative;
     font-family: 'Audiowide', cursive;
     color: white;
+}
+
+h1>span{
+    position: absolute;
+    font-size: 15px;
+    width: 215px;
+    top: 95%;
+    left: 19%;
+    background: #ff1919;
+    border-radius: 20px;
+    padding: 2px;
+    text-align: center;
+    transition: all 1s;
+}
+
+@media (max-width: 800px){
+    h1>span{
+        left: 13%;
+        font-size: 12px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 500px){
+    h1>span{
+        left: 12%;
+        font-size: 11.75px;
+        width: 175px;
+    }
 }
 
 #img{
@@ -276,6 +322,70 @@ p{
 	 100% {
 		 transform: scale(1);
 	}
+}
+
+
+/* CARDS */
+.similar{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 75px;
+}
+
+.card {
+ width: 250px;
+ height: auto;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
+}
+
+.card img{
+    border-radius: 20px;
+}
+
+.card-details {
+ color: black;
+ /* height: 100%; */
+ width: 100%;
+ gap: .5em;
+ display: grid;
+ place-content: center;
+}
+
+.card-button {
+ transform: translate(-50%, 125%);
+ width: 90%;
+ border-radius: 1rem;
+ border: none;
+ background-color: #FFD700;
+ color: black;
+ font-size: 1rem;
+ padding: .5rem 1rem;
+ font-family: 'Audiowide', cursive;
+ position: absolute;
+ left: 50%;
+ bottom: 0;
+ opacity: 0;
+ transition: 0.3s ease-out;
+}
+
+.text-body {
+ color: rgb(134, 134, 134);
+}
+
+.card:hover {
+ border-color: #FFD700;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+ transform: translate(-50%, 50%);
+ opacity: 1;
 }
 
 

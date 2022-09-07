@@ -2,12 +2,12 @@
   <div class="container">
      <h1>Register</h1>
      <form>
-        <div><label for="username">Username: </label><input type="text" name="username" v-model="username"></div>
-        <div><label for="email">Email Address: </label><input type="email" name="email" v-model="emailAddress"></div>
-        <div><label for="password">Password: </label><input type="password" name="password" v-model="password"></div>
-        <div><label for="conpassword">Confirm Password: </label><input type="password" name="conpassword" v-model="conpassword"></div>
-        <div><label for="phone">Phone Number: </label><input type="text" name="phone" maxlength="10" v-model="phone_number"></div>
-        <div><label for="profilePic">Profile Picture: </label><input type="text" name="profile" v-model="profilePic"></div>
+        <div><label for="username">Username: </label><input required autocomplete="off" type="text" name="username" v-model="username"></div>
+        <div><label for="email">Email Address: </label><input required autocomplete="off" type="email" name="email" v-model="emailAddress"></div>
+        <div><label for="password">Password: </label><input required autocomplete="off" type="password" name="password" v-model="password"></div>
+        <div><label for="conpassword">Confirm Password: </label><input required autocomplete="off" type="password" name="conpassword" v-model="conpassword"></div>
+        <div><label for="phone">Phone Number: </label><input required autocomplete="off" type="text" name="phone" maxlength="10" v-model="phone_number"></div>
+        <div><label for="profilePic">Profile Picture: </label><input required autocomplete="off" type="text" name="profile" v-model="profilePic"></div>
      </form>
     <div class="containers" v-if="click && !token">
         <div class="wrapper">
@@ -17,9 +17,6 @@
         </div>
     </div>
      <button type="button" @click="register" v-else-if="!token" class="button">Submit</button>
-    <div v-if="token" class="mt-4">
-        <h3>Please Proceed to the Log In</h3>
-    </div>
   </div>
 </template>
 

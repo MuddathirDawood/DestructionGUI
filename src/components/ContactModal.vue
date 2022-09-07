@@ -186,5 +186,6 @@ form{
 
 textarea{
     padding: 10px;
+    width: 100%;
 }
 </style>

@@ -2,8 +2,8 @@
   <div class="container">
      <h1>Login</h1>
      <form>
-        <div><label for="email">Email Address: </label><input type="email" name="email" v-model="emailAddress"></div>
-        <div><label for="password">Password: </label><input type="password" name="password" v-model="password"></div>
+        <div><label for="email">Email Address: </label><input required autocomplete="off" type="email" name="email" v-model="emailAddress"></div>
+        <div><label for="password">Password: </label><input required autocomplete="off" type="password" name="password" v-model="password"></div>
      </form>
     <div class="containers" v-if="click && !user">
         <div class="wrapper">
@@ -61,6 +61,7 @@ export default {
     background: url(https://i.postimg.cc/2ynsYVps/minimal-abstract-light-silver-gold-background-105940-795.jpg) no-repeat center center/cover;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     min-width: 100vw;
     min-height: 100vh;
@@ -149,6 +150,7 @@ input[type=email]:focus{
 }
 
 .wrapper {
+  margin-left: 38px;
   width: 200px;
   height: 200px;
   position: relative;

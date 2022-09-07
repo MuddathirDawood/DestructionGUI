@@ -60,6 +60,7 @@ h1>span{
     font-size: 32px;
   }
   h1>span{
+    width: 200px;
     left: 0;
     font-size: 14px;
   }

@@ -137,7 +137,7 @@ export default {
     border-bottom: 1px solid white;
 }
 
-@media (max-width: 730px){
+@media (max-width: 900px){
   #menubtn{
     display: block !important;
   }

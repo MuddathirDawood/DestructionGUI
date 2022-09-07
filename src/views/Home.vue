@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-        <img src="https://i.postimg.cc/50NxhyXG/Logo.png" alt="">
+        <h1>Destruction <span>Weapons of Annihilation</span></h1>
   </div>
 </template>
 
@@ -19,10 +19,50 @@ export default {
 
 .container{
   min-width: 100vw;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+h1{
+  font-family: 'Audiowide', cursive;
+  color: #E5E4E2;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 75px;
+  transition: all 1s;
+}
+
+h1>span{
+  text-transform: none;
+  position: absolute;
+  color: #FFD700;
+  font-size: 35px;
+  width: 500px;
+  top: 85%;
+  left: 35%;
+  transition: all 1s;
+}
+
+@media (max-width: 800px){
+  h1{
+    font-size: 44px;
+  }
+  h1>span{
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 600px){
+  h1{
+    font-size: 32px;
+  }
+  h1>span{
+    left: 0;
+    font-size: 14px;
+  }
+}
 
 </style>

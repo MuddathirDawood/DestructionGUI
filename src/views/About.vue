@@ -11,7 +11,7 @@
     	        <img src="https://images.pexels.com/photos/946351/pexels-photo-946351.jpeg?w=500&h=650&auto=compress&cs=tinysrgb" alt="profile-sample1" class="background"/>
     	    </div>
     	    <div class="profile-thumb-block">
-    	        <img src="https://i.postimg.cc/cLMwn4ds/Muddathir.jpg" alt="profile-image" class="profile"/>
+    	        <img src="https://i.postimg.cc/TYMWc9S1/Muddathir.jpg" alt="profile-image" class="profile"/>
     	    </div>
     	    <div class="card-content">
             <h2>Muddathir Dawood<small>Aspiring Full Stack Developer</small></h2>
@@ -105,7 +105,7 @@ p{
   height:50%;
   border-radius:0 0 5px 5px;
   position: relative;
-  z-index: 9999;
+  z-index: 5;
 }
 .profile-card-3 .card-content::before {
     content: '';
@@ -129,7 +129,7 @@ p{
   border: 2px solid rgba(255, 255, 255, 1);
   -webkit-transform: translate(-50%, 0%);
   transform: translate(-50%, 0%) scale(1.2);
-  z-index:99999;
+  z-index:6;
 }
 .profile-card-3 h2 {
   margin: 0 0 5px;

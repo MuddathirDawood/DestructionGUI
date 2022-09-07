@@ -60,7 +60,6 @@ export default {
 .container{
     background: url(https://i.postimg.cc/2ynsYVps/minimal-abstract-light-silver-gold-background-105940-795.jpg) no-repeat center center/cover;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
     min-width: 100vw;

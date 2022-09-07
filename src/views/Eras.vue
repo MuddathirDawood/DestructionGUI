@@ -5,12 +5,14 @@
     <p>{{era[0].history}} <br><br> {{era[0].history2}} <br><br> {{era[0].history3}}</p>
     <h1 class="mb-4">Weapons from this era:</h1>
     <div v-if="eraweapons" class="weapons">
-        <div class="card" v-for="weapon in eraweapons" :key="weapon">
-        <div class="card-details">
-            <img :src="weapon.image" alt="" class="img-fluid">
-        </div>
-        <button class="card-button">{{weapon.name}}</button>
-        </div>
+        <router-link :to="{name: 'Weapon', params: {id: weapon.weapon_id}}" v-for="weapon in eraweapons" :key="weapon">
+            <div class="card">
+                <div class="card-details">
+                    <img :src="weapon.image" alt="" class="img-fluid">
+                </div>
+                <button class="card-button">{{weapon.name}}</button>
+            </div>
+        </router-link>
     </div>
   </div>
   <div class="containers" v-else>
@@ -27,6 +29,7 @@ export default {
     props: ['id'],
     mounted(){
         this.$store.state.era = null
+        this.$store.commit('setWeapon', null)
         this.$store.dispatch('getEra', this.id)
         this.$store.dispatch('getEraWeapons', this.id)
     },

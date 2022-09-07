@@ -44,7 +44,7 @@
         <ion-icon name="grid-outline"></ion-icon>
       </button>
       <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
-      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#favs" id="menubtn">
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#favs" id="menubtn" v-if="user">
         <ion-icon name="bookmarks-outline"></ion-icon>
       </button>
     </div>
@@ -148,6 +148,13 @@ li{
   margin: 0;
   color: #FFD700;
   font-size: 19px;
+  transition: all .3s;
+  z-index: 5;
+}
+
+li:hover{
+  transform: scale(1.08);
+  transition: all .3s;
 }
 
 .drop {
@@ -160,6 +167,7 @@ li{
   top: 48px;
   transform: translate(0, -335px);
   transition: all 1s;
+  z-index: 99999;
 }
 .drop div {
   -webkit-transform: translate(0, -100%);
@@ -217,11 +225,11 @@ li{
   transform: translate(0,0);
 }
 
-@media (max-width: 1100px){
-  .col-5{
+@media (max-width: 1200px){
+  .col-4{
     display: none;
   }
-  .col-xl-7{
+  .col-xl-8{
     text-align: center;
   }
 }
@@ -245,7 +253,7 @@ li{
 }
 
 
-@media (max-width: 730px){
+@media (max-width: 900px){
   .row{
     display: none;
   }
@@ -254,6 +262,12 @@ li{
   }
   .mobile img{
     display: block;
+  }
+}
+
+@media (max-width: 400px){
+  .mobile img{
+    width: 95%;
   }
 }
 </style>

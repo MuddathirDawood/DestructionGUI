@@ -5,10 +5,10 @@
     <button type="button" data-bs-dismiss="offcanvas" id="menubtn"><ion-icon name="grid-outline"></ion-icon></button>
   </div>
   <div class="offcanvas-body">
-    <div>
+    <div data-bs-dismiss="offcanvas">
       <router-link to="/">Home</router-link>
     </div>
-    <div>
+    <div data-bs-dismiss="offcanvas">
       <router-link to="/about">About</router-link>
     </div>
     <div class="accordion-item">
@@ -19,7 +19,7 @@
       </h2>
       <div id="weapons" class="accordion-collapse collapse" data-bs-parent="#weapons">
         <div class="accordion-body">
-            <li v-for="era in eras" :key="era" class="py-2 list">
+            <li v-for="era in eras" :key="era" class="py-2 list" data-bs-dismiss="offcanvas">
               <router-link @click="getWeapons(era.era_id)" :to="{name: 'Weapons', params: {id: era.era_id}}">{{era.era_name}}</router-link>
             </li>
         </div>
@@ -33,21 +33,21 @@
       </h2>
       <div id="eras" class="accordion-collapse collapse" data-bs-parent="#eras">
         <div class="accordion-body">
-            <li v-for="era in eras" :key="era" class="py-2 list">
+            <li v-for="era in eras" :key="era" class="py-2 list" data-bs-dismiss="offcanvas">
               <router-link @click="getWeapons(era.era_id)" :to="{name: 'Eras', params: {id: era.era_id}}">{{era.era_name}}</router-link>
             </li>
         </div>
       </div>
     </div>      
     <div v-if="user" id="accounts">
-        <li data-bs-toggle="offcanvas" data-bs-target="#account">Account</li>
-        <li v-if="user.userRole == 'admin'"><router-link to="/admin">Admin</router-link></li>
+        <li data-bs-toggle="offcanvas" data-bs-target="#account" class="mb-2">Account</li>
+        <li v-if="user.userRole == 'admin'" data-bs-dismiss="offcanvas" class="mt-2"><router-link to="/admin">Admin</router-link></li>
     </div>
     <div v-else id="acc">
-    <div>
+    <div data-bs-dismiss="offcanvas">
       <router-link to="/login">Login</router-link>
     </div>
-    <div>
+    <div data-bs-dismiss="offcanvas">
       <router-link to="/register">Register</router-link>
     </div>
     </div>

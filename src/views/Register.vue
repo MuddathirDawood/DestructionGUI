@@ -16,7 +16,7 @@
           <div class="ball2"></div>
         </div>
     </div>
-     <button type="button" @click="register" v-else-if="!token" class="button">Submit</button>
+     <button type="button" @click="register" v-else-if="!token" class="button my-3">Submit</button>
   </div>
 </template>
 
@@ -36,36 +36,46 @@ export default {
     methods:{
         register(){
             this.click = true
-            if (this.password === this.conpassword) {
-                const payload = {
-                    username: this.username,
-                    emailAddress: this.emailAddress,
-                    phone_number: this.phone_number,
-                    password: this.password,
-                    profilePic: this.profilePic,
-                }
-
-                this.$store.dispatch('register', payload)
-                this.username = '';
-                this.emailAddress = '';
-                this.phone_number = '';
-                this.password = '';
-                this.conpassword = '';
-                this.profilePic = '';
-
+            if ((this.username === '') || (this.emailAddress === '') || (this.phone_number === '') || (this.password === '') || (this.conpassword === '') || (this.profilePic === '')) {
+            swal({
+              icon: 'error',
+              title: 'Empty Fields',
+              text: 'You left 1 or more fields empty',
+              buttons: 'OK'
+            })
+            this.click = false
             } else {
-                swal({
-                icon: "warning",    
-                text: "Password does not match",
-                button: "Try Again"
-                })
-                this.click = false
-                this.username = '';
-                this.emailAddress = '';
-                this.phone_number = '';
-                this.password = '';
-                this.conpassword = '';
-                this.profilePic = '';
+                if (this.password === this.conpassword) {
+                    const payload = {
+                        username: this.username,
+                        emailAddress: this.emailAddress,
+                        phone_number: this.phone_number,
+                        password: this.password,
+                        profilePic: this.profilePic,
+                    }
+    
+                    this.$store.dispatch('register', payload)
+                    this.username = '';
+                    this.emailAddress = '';
+                    this.phone_number = '';
+                    this.password = '';
+                    this.conpassword = '';
+                    this.profilePic = '';
+    
+                } else {
+                    swal({
+                    icon: "warning",    
+                    text: "Password does not match",
+                    button: "Try Again"
+                    })
+                    this.click = false
+                    this.username = '';
+                    this.emailAddress = '';
+                    this.phone_number = '';
+                    this.password = '';
+                    this.conpassword = '';
+                    this.profilePic = '';
+                }                
             }
 
         }
@@ -92,7 +102,7 @@ export default {
 
 h1{
     font-family: 'Audiowide', cursive;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 /* BUTTON */
@@ -124,6 +134,13 @@ form{
     gap: 30px;
 }
 
+@media (max-width:560px){
+    form>div{
+        display: grid;
+    }
+}
+
+
 label{
     font-family: 'Inter';
     font-style: normal;
@@ -140,6 +157,12 @@ input{
     border: 1px solid #000000;
     box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);
     width: 300px;
+}
+
+@media (max-width:325px){
+    input{
+        width: 100%;
+    }
 }
 
 input[type=text]{

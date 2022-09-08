@@ -33,7 +33,7 @@ export default {
     props: ['user'],
   methods:{
     logout(){
-      return (this.$store.state.user = null)
+      window.location.reload()
     }
   }
 }

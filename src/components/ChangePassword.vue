@@ -8,6 +8,10 @@
       </div>
       <div class="modal-body">
         <div class="input-group my-2">
+          <input required type="password" name="oldpassword" autocomplete="off" class="input" v-model="oldpassword">
+          <label class="user-label">Current Password</label>
+        </div>
+        <div class="input-group my-2">
           <input required type="password" name="newpassword" autocomplete="off" class="input" v-model="newpassword">
           <label class="user-label">New Password</label>
         </div>
@@ -28,14 +32,28 @@
 import swal from 'sweetalert'
 export default {
     props: ['user'],
+    computed:{
+      login(){
+        return this.$store.state.login
+      }
+    },
     data(){
         return{
+            oldpassword: '',
             newpassword: '',
             connewpassword: ''
         }
     },
     methods:{
         change(){
+          if (this.oldpassword != this.login.password) {
+            swal({
+              icon: 'error',
+              title: 'Incorrect Password',
+              text: 'Your current password is incorrect',
+              buttons: 'Try Again'
+            })
+          } else {
             if (this.newpassword !== this.connewpassword) {
                 swal({
                     icon: 'error',
@@ -47,6 +65,8 @@ export default {
                 }
                 this.$store.dispatch('changePassword', payload)
             }
+          }
+
         }
     }
 }

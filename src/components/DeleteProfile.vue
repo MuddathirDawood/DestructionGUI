@@ -7,7 +7,11 @@
         <button type="button" data-bs-dismiss="modal" id="exit"><ion-icon name="exit-outline"></ion-icon></button>
       </div>
       <div class="modal-body">
-          <h3>Are you sure you want to DELETE your account?</h3>                 
+          <h3>Are you sure you want to <span>DELETE</span> your account?</h3> 
+          <div class="input-group my-2">
+            <input required type="password" name="password" autocomplete="off" class="input" v-model="password">
+            <label class="user-label">Please type in your Password to confirm</label>
+        </div>                
       </div>
       <div class="modal-footer">
           <button class="noselect" id="clear" @click="deleteU" data-bs-dismiss="modal"><span class="text">Yes</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span>
@@ -22,9 +26,28 @@
 import swal from 'sweetalert'
 export default {
     props: ['user'],
+    data(){
+      return{
+        password: ''
+      }
+    },
+    computed:{
+      login(){
+        return this.$store.state.login
+      }
+    },
     methods:{
         deleteU(){
-          this.$store.dispatch('deleteUser', this.user.userID)
+          if (this.password != this.login.password) {
+            swal({
+              icon: 'error',
+              title: 'Incorrect Password',
+              text: 'Your password is incorrect',
+              buttons: 'Try Again'
+            })
+          } else {
+            this.$store.dispatch('deleteUser', this.user.userID)
+          }
         }
     }
 }
@@ -59,6 +82,10 @@ export default {
 #exit ion-icon{
     font-size: 25px;
     color: white;
+}
+
+span{
+  color: #e62222;
 }
 
 .modal-body{
@@ -148,4 +175,43 @@ h5{
 #clear:active .icon svg {
  transform: scale(0.8);
 }
+
+/* INPUTS */
+.input-group {
+ position: relative;
+ width: 80%;
+}
+
+.input {
+ border: solid 1.5px #9e9e9e;
+ border-radius: 10px !important;
+ background: none;
+ padding: .6rem;
+ width: 100%;
+ font-size: 1rem;
+ color: Black;
+ transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.user-label {
+ position: absolute;
+ left: 15px;
+ color: black;
+ pointer-events: none;
+ transform: translateY(1rem);
+ transition: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.input:focus, input:valid {
+ outline: none;
+ border: 1.5px solid #FFD700;
+}
+
+.input:focus ~ label, input:valid ~ label {
+ transform: translateY(-50%) scale(0.8);
+ background-color: #E5E4E2;
+ padding: 0 .2em;
+ color: black;
+}
+
 </style>

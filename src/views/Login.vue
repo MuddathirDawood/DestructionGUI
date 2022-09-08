@@ -80,14 +80,21 @@ h3{
 }
 
 form{
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    align-items: center;
+    align-items: center !important;
     padding: 15px;
     gap: 30px;
 }
+
+@media (max-width:560px){
+    form>div{
+        display: grid;
+    }
+}
+
 
 label{
     font-family: 'Inter';
@@ -104,6 +111,13 @@ input{
     border: 1px solid #000000;
     box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);
     width: 300px;
+    transition: all .5s;
+}
+
+@media (max-width:325px){
+    input{
+        width: 100%;
+    }
 }
 
 input[type=password]{

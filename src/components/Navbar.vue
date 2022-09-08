@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="fixed-top">
     <div class="row">
       <div class="col-4">
         <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
@@ -111,8 +111,17 @@ img{
 }
 nav{
     height: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background-color: black !important;
 }
+
+.row{
+  background-color: rgba(0, 0, 0, 0.56);
+}
+
+a:active{
+  text-decoration: underline;
+}
+
 #main {
   list-style: none;
   background: transparent;
@@ -254,6 +263,9 @@ li:hover{
 
 
 @media (max-width: 900px){
+  .mobile{ 
+    background-color: rgba(0, 0, 0, 0.56);
+  }
   .row{
     display: none;
   }

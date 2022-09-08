@@ -26,11 +26,11 @@ export default {
 }
 
 header{
-  background-color: rgba(0, 0, 0, 0.56);
-  /* display: flex; */
-  /* justify-content: space-between; */
   height: 65px;
   min-width: 100vw;
+}
+.modal-backdrop{
+  position: relative !important;
 }
 
 @media (max-width:1100px){

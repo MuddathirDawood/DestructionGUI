@@ -156,8 +156,6 @@ export default createStore({
             context.commit('setToken',data.token)
             context.dispatch('getFavourites', data.user[0].userID)
             context.commit('setLogin', payload)
-            // context.dispatch('getUserFavs')
-              router.push('/')
           }
         }
 
@@ -188,6 +186,8 @@ export default createStore({
           text: `${data.msg}`,
           button: 'OK'
         })
+        router.push('/')
+        window.location.reload()
       })
     },
     async getFavourites(context, id){
@@ -328,6 +328,7 @@ export default createStore({
           title: 'Edited',
           text: `${data.msg}`
         })
+        router.push('/')
         window.location.reload();
       })
     },

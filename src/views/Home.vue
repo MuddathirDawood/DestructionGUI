@@ -24,6 +24,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 70px;
 }
 
 h1{
@@ -33,6 +34,7 @@ h1{
   position: relative;
   font-size: 75px;
   transition: all 1s;
+  animation: float 2s ease-in-out infinite;
 }
 
 h1>span{
@@ -64,6 +66,18 @@ h1>span{
     left: 0;
     font-size: 14px;
   }
+}
+
+@keyframes float{
+	0%{
+		transform: translateY(0px);
+	}
+	50%{
+		transform: translateY(-6px);
+	}
+	100%{
+		transform: translateY(0px);
+	}
 }
 
 </style>

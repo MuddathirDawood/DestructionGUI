@@ -352,7 +352,32 @@ export default createStore({
         context.state.user = null
         window.location.reload()
       })
-    },                         
+    },
+    editEra(context, payload){
+      const {id , era_name , era_period , history , history2 , history3} = payload
+      fetch('https://destructionapi.herokuapp.com/eras/' + id, {
+        method: 'PUT',
+        body: JSON.stringify({
+          era_name: era_name,
+          era_period: era_period,
+          history: history,
+          history2: history2,
+          history3: history3
+        }),
+        headers:{
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((res)=> res.json())
+      .then((data)=> {
+        swal({
+          icon: 'success',
+          title: 'Edited',
+          text: 'Successfully Edited'
+        })
+        context.dispatch('getEras')
+      })
+    },                             
   },
   modules: {
   }

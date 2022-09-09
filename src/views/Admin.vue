@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <h1>Admin</h1>
-<table class="table" v-if="weapons">
+<table class="table" v-if="weapons" id="weapons">
   <h1>Weapons</h1>
   <tr>
     <th class="table_heading">ID</th>
@@ -51,6 +51,24 @@
     <FavouriteModal :user="user"/>
   </tr>
 </table>
+<table class="table" v-if="eras" id="eras">
+  <h1>Eras</h1>
+  <tr>
+    <th class="table_heading">ID</th>
+    <th class="table_heading">Era Name</th>
+    <th class="table_heading">Period</th>
+    <th class="table_heading">History</th>
+    <th class="table_heading">Edit Era</th>
+  </tr>
+  <tr class="table_row" v-for="era in eras" :key="era" :era="era">
+    <td class="table_content" data-heading="ID">{{era.era_id}}</td>
+    <td class="table_content" data-heading="Era Name">{{era.era_name}}</td>
+    <td class="table_content" data-heading="Period">{{era.era_period}}</td>
+    <td class="table_content" data-heading="History">{{era.history}} <br><br> {{era.history2}} <br><br> {{era.history3}}</td>
+    <td class="table_content" data-heading="Edit"><button data-bs-toggle="modal" :data-bs-target="`#EditEraModal`+ era.era_id">Edit Era</button></td>
+    <EraEditModal :era="era"/>
+  </tr>
+</table>
 </div>
 
 <!-- MODALS -->
@@ -61,18 +79,23 @@ import AddWeaponModal from '@/components/AddWeaponModal.vue'
 import EditWeaponModal from '@/components/EditWeaponModal.vue'
 import DeleteWeaponModal from '@/components/DeleteWeaponModal.vue'
 import FavouriteModal from '@/components/FavouriteModal.vue'
+import EraEditModal from '@/components/EditEraModal.vue'
 export default {
-  components: { AddWeaponModal, EditWeaponModal, DeleteWeaponModal, FavouriteModal },
+  components: { AddWeaponModal, EditWeaponModal, DeleteWeaponModal, FavouriteModal, EraEditModal},
   mounted(){
     this.$store.dispatch('getWeapons')
     this.$store.dispatch('getUsers')
+    this.$store.dispatch('getEras')
   },
   computed:{
     weapons(){
-        return this.$store.state.weapons
+      return this.$store.state.weapons
     },
     users(){
       return this.$store.state.users
+    },
+    eras(){
+      return this.$store.state.eras
     }
   },
   methods:{
@@ -184,7 +207,8 @@ td { font-family: 'Avenir Next', 'Segoe UI', 'Lucida Grande', sans-serif; }
 }
 
 .table_heading { 
-    border-bottom: 2px solid #FFC842;
+    border-top: 2px solid #FFD700;
+    border-bottom: 2px solid #FFD700;
     color: black;
     font-family: 'Audiowide', cursive;
 }
@@ -226,5 +250,17 @@ td { font-family: 'Avenir Next', 'Segoe UI', 'Lucida Grande', sans-serif; }
 h1, h4 {
   margin: 50px auto 50px auto;
   text-align: center;
+}
+
+@keyframes float{
+	0%{
+		transform: translateY(0px);
+	}
+	50%{
+		transform: translateY(-6px);
+	}
+	100%{
+		transform: translateY(0px);
+	}
 }
 </style>

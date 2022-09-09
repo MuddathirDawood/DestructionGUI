@@ -35,7 +35,7 @@ export default {
 	 border-radius: 5px;
 	 overflow: hidden;
 	 z-index: 0;
-	 animation: float 2s ease-in-out infinite;
+	 animation: move 2s ease-in-out infinite;
 }
  .blog-card a {
 	 color: inherit;
@@ -266,7 +266,7 @@ export default {
 	}
 }
 
-@keyframes float{
+@keyframes move{
 	0%{
 		transform: scale(1);
 	}

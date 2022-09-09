@@ -5,6 +5,9 @@
         <div><label for="email">Email Address: </label><input required autocomplete="off" type="email" name="email" v-model="emailAddress"></div>
         <div><label for="password">Password: </label><input required autocomplete="off" type="password" name="password" v-model="password"></div>
      </form>
+     <router-link to="/register">
+     <p>Don't Have An Account? <span id="heart">Click Here</span></p>
+     </router-link>
     <div class="containers" v-if="click && !user">
         <div class="wrapper">
           <div class="ball"></div>
@@ -36,6 +39,7 @@ export default {
                 password: this.password
             }
             this.$store.dispatch('login',payload)
+            this.click=false
         }
     },
     computed:{
@@ -79,6 +83,19 @@ h3{
     font-size: 27px;
 }
 
+p{
+  font-family: 'Destruction';
+  color: #000000;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+p{
+    animation: heartbeat 1.5s ease-in-out 2 both;
+}
+
 form{
     width: 100%;
     display: flex;
@@ -92,6 +109,9 @@ form{
 @media (max-width:560px){
     form>div{
         display: grid;
+    }
+    h3{
+        text-align: center;
     }
 }
 
@@ -223,6 +243,41 @@ input[type=email]:focus{
     100% {
         transform: rotate(-360deg);
     };
+}
+
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
 }
 
 </style>

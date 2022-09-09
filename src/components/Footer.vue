@@ -34,6 +34,7 @@
         </div>
        <div id="img">
             <img src="https://i.postimg.cc/GpssqyNd/Logo1.png" alt="">
+            <p>Muddathir Dawood &copy; 2022</p>
        </div>
     </div>
     </div>
@@ -83,6 +84,13 @@ font-size: 15px;
   height: 65px;
 }
 
+p{
+    font-family: 'Audiowide', cursive;
+    color: #E5E4E2;
+    text-align: center;
+    font-size: 17px;
+}
+
 img{
     width: 100%;
     height: 100%;
@@ -93,5 +101,11 @@ img{
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (max-width:995px){
+    img{
+        display: none;
+    }
 }
 </style>

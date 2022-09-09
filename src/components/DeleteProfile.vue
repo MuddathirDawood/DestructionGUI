@@ -179,7 +179,7 @@ h5{
 /* INPUTS */
 .input-group {
  position: relative;
- width: 80%;
+ width: 100%;
 }
 
 .input {

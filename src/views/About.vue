@@ -2,7 +2,7 @@
   <div class="container">
     <h1>About</h1>
     <p>This website was created as our capstone project for the Life Choices Coding Academy. The assignment was to create anything we wanted using everything we had learned about HTML5, CSS3, and Javascript, which is further divided into Vue.js, Bootstrap, Node.js, and MySQL throughout the six months I spent there. <br> 
-    I chose this topic because I didn't want to do something common, and because I'm interested in weapons of war, I decided to create an information website with various weapons used throughout history as well as some background knowledge about those weapons and the historical periods they were used in. The result is the website you're currently visiting.</p>
+    I chose this topic because I didn't want to do something common, and because I'm interested in the history of weapons, I decided to create an information website with various weapons used throughout history as well as some background knowledge about those weapons and the historical periods they were used in. The result is the website you're currently visiting.</p>
   </div>
   <div id="divider"></div>
   <div class="aboutme">
@@ -47,8 +47,10 @@ h1{
 }
 
 p{
+    border-radius: 4px;
     background: #ffffffb3;
-    padding: 10px;
+    padding: 12px;
+    font-family: FontAwesome;
 }
 
 #divider{

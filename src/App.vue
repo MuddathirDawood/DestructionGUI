@@ -29,6 +29,11 @@ header{
   height: 65px;
   min-width: 100vw;
 }
+
+.offcanvas-body{
+  overflow-x: hidden;
+}
+
 .modal-backdrop{
   position: relative !important;
 }

@@ -69,6 +69,7 @@ p{
     font-family: FontAwesome;
     background: rgba(0, 0, 0, 0.3);
     color: #E5E4E2;
+    border-radius: 3px;
 }
 
 h1{

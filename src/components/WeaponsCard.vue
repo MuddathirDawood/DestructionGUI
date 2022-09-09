@@ -35,6 +35,7 @@ export default {
 	 border-radius: 5px;
 	 overflow: hidden;
 	 z-index: 0;
+	 animation: float 2s ease-in-out infinite;
 }
  .blog-card a {
 	 color: inherit;
@@ -262,6 +263,18 @@ export default {
 @media (max-width: 500px){
 	.blog-card{
 		height: 335px;
+	}
+}
+
+@keyframes float{
+	0%{
+		transform: scale(1);
+	}
+	50%{
+		transform: scale(1.005);
+	}
+	100%{
+		transform: scale(1);
 	}
 }
 </style>

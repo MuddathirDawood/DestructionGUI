@@ -157,4 +157,10 @@ img{
   height: 220px;
   border-radius: 500px !important;
 }
+
+@media (max-width:500px){
+  .input-group{
+    width: 100%;
+  }
+}
 </style>

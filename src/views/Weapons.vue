@@ -1,8 +1,8 @@
 <template>
 <h1 class="mt-4">Weapons</h1>
-  <transition-group tag="div" class="container" v-if="weaponsEra" appear @before-enter="beforeEnter" @enter="enter">
+  <div class="container" v-if="weaponsEra">
 	<WeaponsCard  v-for="(weapons, index) in weaponsEra" :key="weapons" :data-index="index" :weapons="weapons"/>
-  </transition-group>
+  </div>
   <div class="containers" v-else>
     <div class="wrapper">
       <div class="ball"></div>
@@ -26,23 +26,7 @@ export default {
         weaponsEra(){
             return this.$store.state.weaponsEra
         }
-    },
-    setup(){
-        const beforeEnter=(el)=>{
-            el.style.opacity = 0;
-            el.style.transform = 'scale(0)';
-        }
-        const enter = (el, done) =>{
-            gsap.to(el,{
-                opacity: 1,
-                scale: 1,
-                duration: 1,
-                onComplete: done,
-                delay: el.dataset.index * 0.5
-            })
-        }
-        return {beforeEnter, enter}
-    }    
+    }
 }
 </script>
 

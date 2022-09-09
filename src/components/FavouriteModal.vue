@@ -80,10 +80,6 @@ export default {
     align-items: center;
 }
 
-.modal-dialog{
-    width: 75%;
-}
-
 .modal-content{
   background: #E5E4E2;
   border-radius: 0;

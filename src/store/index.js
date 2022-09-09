@@ -89,6 +89,11 @@ export default createStore({
       let res = await fetched.json();
       context.commit('setUsers',res.users)
     },    
+    async getFavourites(context, id){
+      let fetched = await fetch('https://destructionapi.herokuapp.com/users/' + id + '/fav')
+      let res = await fetched.json();
+      context.commit('setFavourites', res.favourites)
+    },
     register(context, payload){
       fetch('https://destructionapi.herokuapp.com/users', {
       method: 'POST',
@@ -156,6 +161,7 @@ export default createStore({
             context.commit('setToken',data.token)
             context.dispatch('getFavourites', data.user[0].userID)
             context.commit('setLogin', payload)
+            router.push('/')
           }
         }
 
@@ -189,11 +195,6 @@ export default createStore({
         router.push('/')
         window.location.reload()
       })
-    },
-    async getFavourites(context, id){
-      let fetched = await fetch('https://destructionapi.herokuapp.com/users/' + id + '/fav')
-      let res = await fetched.json();
-      context.commit('setFavourites', res.favourites)
     },
     addFavourite(context, payload){
       fetch('https://destructionapi.herokuapp.com/users/' + context.state.user.userID + '/fav', {
@@ -267,8 +268,9 @@ export default createStore({
       .then((data)=> {
         swal({
           icon: 'success',
-          title: 'Edited',
-          buttons: 'OK'
+          title: 'Weapon Edited',
+          buttons: false,
+          timer: 1000
         })
         context.dispatch('getWeapons')
       })
@@ -286,6 +288,7 @@ export default createStore({
         swal({
           icon: 'success',
           title: 'Weapon added',
+          buttons: false,
           timer: 1000
         })
         context.dispatch('getWeapons')
@@ -300,6 +303,7 @@ export default createStore({
         swal({
           icon: 'success',
           title: 'Weapon Deleted',
+          buttons: false,
           timer: 1000
         })
         context.dispatch('getWeapons')
@@ -341,6 +345,7 @@ export default createStore({
         swal({
           icon: 'success',
           title: 'User Deleted',
+          buttons: false,
           timer: 1000
         })
         router.push('/')

@@ -9,6 +9,9 @@
         <div><label for="phone">Phone Number: </label><input required autocomplete="off" type="text" name="phone" maxlength="10" v-model="phone_number"></div>
         <div><label for="profilePic">Profile Picture: </label><input required autocomplete="off" type="text" name="profile" v-model="profilePic"></div>
      </form>
+    <router-link to="/login">
+     <p>Have An Account Already? <span id="heart">Click Here</span></p>
+     </router-link>
     <div class="containers" v-if="click && !token">
         <div class="wrapper">
           <div class="ball"></div>
@@ -103,6 +106,20 @@ export default {
 h1{
     font-family: 'Audiowide', cursive;
     margin-bottom: 20px;
+}
+
+p{
+  font-family: 'Destruction';
+  color: #000000;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+}
+
+p{
+    animation: heartbeat 1.5s ease-in-out 2 both;
 }
 
 /* BUTTON */
@@ -263,4 +280,40 @@ input[type=number]:focus{
         transform: rotate(-360deg);
     };
 }
+
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+
 </style>

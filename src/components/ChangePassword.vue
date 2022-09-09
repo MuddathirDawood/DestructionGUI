@@ -167,4 +167,10 @@ h5{
  padding: 0 .2em;
  color: black;
 }
+
+@media (max-width:500px){
+  .input-group{
+    width: 95%;
+  }
+}
 </style>
